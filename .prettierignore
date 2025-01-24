@@ -1,0 +1,7 @@
+.angular
+coverage
+test_results
+tools
+dist
+package-lock.json
+package.json
