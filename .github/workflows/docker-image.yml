@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: 
+      - "master"
 
 env:
   REGISTRY: ghcr.io
@@ -20,19 +23,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Maven Build
-        uses: actions/setup-java@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'maven'
-
-      - name: Maven Build & Sonar analysis
-        #        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-        run: mvn -B verify --file pom.xml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          node-version: 20.x
+          cache: 'npm'
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
