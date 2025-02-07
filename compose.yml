@@ -1,5 +1,5 @@
 services:
-  dashboard-app:
+  user-feedback-web:
     build: .
     ports:
       - '4200:4200'
