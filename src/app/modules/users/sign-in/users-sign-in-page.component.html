@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="signInForm">
+  <h2>Connexion</h2>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" type="text" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" />
+  </mat-form-field>
+  <button
+    mat-flat-button
+    [disabled]="signInForm.invalid"
+    type="submit"
+    color="accent"
+  >
+    Se connecter
+  </button>
+</form>

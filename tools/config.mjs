@@ -8,7 +8,7 @@ const getConfig = () => {
 
   return {
     env,
-    bffUrlWithProtocol: `${env.PROTOCOL}://${env.API_ENDPOINT}`
+    apiUrlWithProtocol: `${env.PROTOCOL}://${env.API_ENDPOINT}`
   };
 };
 

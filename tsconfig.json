@@ -19,6 +19,7 @@
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
     "paths": {
+      "uf/core/*": ["./src/app/core/*"],
       "uf/shared/*": ["./src/app/shared/*"],
       "uf/modules/*": ["./src/app/modules/*"],
       "uf/testing/*": ["./src/app/testing/*"],

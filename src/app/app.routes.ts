@@ -9,6 +9,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'users',
+    loadChildren: () =>
+      import('./modules/users').then((children) => children.usersRoutes),
+  },
+  {
     path: 'error',
     loadComponent: () =>
       import('./modules/error/page-error-not-found').then(

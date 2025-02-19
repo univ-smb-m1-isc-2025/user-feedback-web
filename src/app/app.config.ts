@@ -10,6 +10,7 @@ import {
 } from '@ngxs/router-plugin';
 import { provideStore } from '@ngxs/store';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { AuthState } from 'uf/core/services/auth/state';
 import { environment } from 'uf/environments/environment';
 
 import { routes } from './app.routes';
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(),
-    provideStore(),
+    provideStore([AuthState]),
     provideRouter(routes),
     withNgxsRouterPlugin(),
     withNgxsReduxDevtoolsPlugin({

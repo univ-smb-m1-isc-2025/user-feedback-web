@@ -4,7 +4,7 @@ const appConfig = config();
 
 export default {
   '/api': {
-    target: appConfig.bffUrlWithProtocol,
+    target: appConfig.apiUrlWithProtocol,
     secure: false,
     changeOrigin: true,
     pathRewrite: {
