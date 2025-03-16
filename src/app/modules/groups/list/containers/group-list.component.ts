@@ -4,7 +4,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import {
   MatCard,
   MatCardContent,
@@ -13,9 +13,11 @@ import {
 } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { LoaderComponent } from 'uf/shared/components/loader';
 
+import { groupCreateUiActions } from '../../create/data-access/state';
 import { groupDeleteActions } from '../../delete/state';
 import { groupList, groupListLoading } from '../data-access/queries';
 import { groupListActions } from '../data-access/state';
@@ -37,10 +39,12 @@ import { groupListActions } from '../data-access/state';
     MatIcon,
     MatMenu,
     MatMenuItem,
+    MatButton,
   ],
 })
 export class GroupListComponent implements OnInit {
   readonly #store = inject(Store);
+  readonly #router = inject(Router);
 
   readonly groupListSignal = this.#store.selectSignal(groupList);
   readonly loading = this.#store.selectSignal(groupListLoading);
@@ -51,5 +55,13 @@ export class GroupListComponent implements OnInit {
 
   deleteGroup(groupId: number): void {
     this.#store.dispatch(new groupDeleteActions.DeleteGroup(groupId));
+  }
+
+  onClickGroup(groupId: number): void {
+    this.#router.navigate(['/', 'groups', groupId]);
+  }
+
+  addGroup(): void {
+    this.#store.dispatch(new groupCreateUiActions.OpenCreateGroupDialog());
   }
 }

@@ -1,8 +1,12 @@
+<h1>Group List</h1>
+
+<button mat-button (click)="addGroup()">Ajouter un groupe</button>
+
 @if (loading()) {
   <uf-loader />
 } @else {
   @for (group of groupListSignal(); track group.id) {
-    <mat-card appearance="outlined">
+    <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
       <mat-card-header>
         <mat-card-title>{{ group.name }}</mat-card-title>
         <button mat-icon-button [matMenuTriggerFor]="menu">

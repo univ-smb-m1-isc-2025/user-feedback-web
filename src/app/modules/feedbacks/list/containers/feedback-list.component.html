@@ -1,0 +1,16 @@
+@if (loading()) {
+  <uf-loader />
+} @else {
+  @for (feedback of feedbackListSignal(); track feedback.id) {
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ feedback.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ feedback.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  } @empty {
+    Y a point de feedback ici 🤷‍♂️
+  }
+}

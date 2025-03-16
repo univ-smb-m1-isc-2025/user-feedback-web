@@ -13,3 +13,7 @@ export const params = createSelector(
   [customRouterSlice.state],
   (routerState: CustomRouterStateSnapshot | undefined) => routerState?.params,
 );
+
+export const groupId = createSelector([params], (params) =>
+  Number(params?.['groupId']),
+);
