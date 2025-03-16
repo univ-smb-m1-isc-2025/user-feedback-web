@@ -5,9 +5,12 @@ import {
   inject,
   untracked,
 } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { token } from 'uf/core/services/auth/queries';
+import { groupCreateUiActions } from 'uf/modules/groups/create/data-access/state';
+import { GroupListComponent } from 'uf/modules/groups/list/containers';
 import { routeUsersSignIn } from 'uf/modules/users';
 
 @Component({
@@ -15,6 +18,7 @@ import { routeUsersSignIn } from 'uf/modules/users';
   standalone: true,
   templateUrl: './home-layout.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [GroupListComponent, MatButton],
 })
 export class HomeLayoutComponent {
   readonly #store = inject(Store);
@@ -28,4 +32,8 @@ export class HomeLayoutComponent {
       this.#router.navigate(untracked(this.routeUsersSignInSignal));
     }
   });
+
+  addGroup(): void {
+    this.#store.dispatch(new groupCreateUiActions.OpenCreateGroupDialog());
+  }
 }

@@ -1,4 +1,11 @@
 import { Routes } from '@angular/router';
+import { provideStates } from '@ngxs/store';
+import {
+  GroupCreateState,
+  GroupCreateUiState,
+} from 'uf/modules/groups/create/data-access/state';
+import { GroupDeleteState } from 'uf/modules/groups/delete/state';
+import { GroupListState } from 'uf/modules/groups/list/data-access/state';
 
 export const routes: Routes = [
   {
@@ -7,6 +14,14 @@ export const routes: Routes = [
       import('./modules/home').then(
         (component) => component.HomeLayoutComponent,
       ),
+    providers: [
+      provideStates([
+        GroupDeleteState,
+        GroupCreateState,
+        GroupCreateUiState,
+        GroupListState,
+      ]),
+    ],
   },
   {
     path: 'users',
