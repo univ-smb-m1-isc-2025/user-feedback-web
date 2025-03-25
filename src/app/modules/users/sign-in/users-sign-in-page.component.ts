@@ -40,7 +40,7 @@ export class UsersSignInPageComponent {
 
   jwtEffect = effect(() => {
     if (this.jwtSignal()) {
-      this.#router.navigate(['/']);
+      this.#router.navigate(['/', 'groups']);
     }
   });
 

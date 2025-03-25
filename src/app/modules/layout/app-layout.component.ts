@@ -5,22 +5,19 @@ import {
   inject,
   untracked,
 } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { token } from 'uf/core/services/auth/queries';
-import { groupCreateUiActions } from 'uf/modules/groups/create/data-access/state';
-import { GroupListComponent } from 'uf/modules/groups/list/containers';
 import { routeUsersSignIn } from 'uf/modules/users';
 
 @Component({
-  selector: 'uf-home-layout',
+  selector: 'uf-app-layout',
   standalone: true,
-  templateUrl: './home-layout.component.html',
+  templateUrl: './app-layout.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [GroupListComponent, MatButton],
+  imports: [RouterOutlet],
 })
-export class HomeLayoutComponent {
+export class AppLayoutComponent {
   readonly #store = inject(Store);
   readonly #router = inject(Router);
 
@@ -32,8 +29,4 @@ export class HomeLayoutComponent {
       this.#router.navigate(untracked(this.routeUsersSignInSignal));
     }
   });
-
-  addGroup(): void {
-    this.#store.dispatch(new groupCreateUiActions.OpenCreateGroupDialog());
-  }
 }
