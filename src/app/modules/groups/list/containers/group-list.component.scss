@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
+}
+
+.group-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(405px, 1fr));
+  gap: 28px;
+  padding: 28px;
+
+  mat-card {
+    cursor: pointer;
+
+    .mat-mdc-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

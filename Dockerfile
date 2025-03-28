@@ -1,12 +1,9 @@
-FROM node:20.12.1
+FROM nginx:alpine
 
-WORKDIR /app
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY . /app
+COPY dist/user-feedback-web/browser /usr/share/nginx/html
 
-RUN npm i -g @angular/cli
+EXPOSE 4200
 
-RUN cat package.json
-RUN npm i
-
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["nginx", "-g", "daemon off;"]

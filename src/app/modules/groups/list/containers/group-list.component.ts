@@ -64,4 +64,8 @@ export class GroupListComponent implements OnInit {
   addGroup(): void {
     this.#store.dispatch(new groupCreateUiActions.OpenCreateGroupDialog());
   }
+
+  prevent(e: MouseEvent): void {
+    e.stopPropagation();
+  }
 }
