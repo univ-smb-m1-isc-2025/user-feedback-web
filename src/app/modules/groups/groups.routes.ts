@@ -9,6 +9,10 @@ import {
 } from './create/data-access/state';
 import { GroupLayoutComponent } from './layout';
 import { GroupListState } from './list/data-access/state';
+import {
+  FeedbackCreateState,
+  FeedbackCreateUiState,
+} from 'uf/modules/feedbacks/create/data-access/state';
 
 export const groupRoutes: Routes = [
   {
@@ -36,7 +40,13 @@ export const groupRoutes: Routes = [
           import('uf/modules/feedbacks/list/containers').then(
             (component) => component.FeedbackListComponent,
           ),
-        providers: [provideStates([FeedbackListState])],
+        providers: [
+          provideStates([
+            FeedbackListState,
+            FeedbackCreateState,
+            FeedbackCreateUiState,
+          ]),
+        ],
       },
     ],
   },
