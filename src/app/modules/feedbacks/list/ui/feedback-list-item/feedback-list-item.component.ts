@@ -1,10 +1,19 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardAvatar,
+  MatCardContent,
+  MatCardHeader,
+  MatCardSubtitle,
+  MatCardTitle
+} from '@angular/material/card';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
+import { AvatarComponent } from 'uf/shared/components/avatar';
 import { LoaderComponent } from 'uf/shared/components/loader';
 
 import { Feedback } from '../../data-access/state';
@@ -22,13 +31,16 @@ import { Feedback } from '../../data-access/state';
     MatCardHeader,
     MatCardContent,
     MatCardActions,
+    MatCardAvatar,
     MatCardTitle,
+    MatCardSubtitle,
     MatIconButton,
     MatIcon,
     MatLabel,
     MatFormField,
     MatInput,
     FormsModule,
+    AvatarComponent,
   ],
 })
 export class FeedbackListItemComponent {
@@ -37,6 +49,7 @@ export class FeedbackListItemComponent {
   readonly getComments = output<number>();
   readonly postComment = output<string>();
 
+  isCommentAreaOpen = false;
   isCommentFormOpen = false;
   comment = '';
 
@@ -51,6 +64,10 @@ export class FeedbackListItemComponent {
   }
 
   getFeedbackComments(feedbackId: number): void {
-    this.getComments.emit(feedbackId);
+    if (!this.isCommentAreaOpen) {
+      this.getComments.emit(feedbackId);
+    }
+
+    this.isCommentAreaOpen = !this.isCommentAreaOpen;
   }
 }
