@@ -14,10 +14,11 @@ import {
 } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { FeedbackListItemComponent } from 'uf/modules/feedbacks/list/ui/feedback-list-item/feedback-list-item.component';
 import { LoaderComponent } from 'uf/shared/components/loader';
 import { groupId } from 'uf/shared/data-access/router';
 
+import { commentActions } from '../../comment/state';
 import { feedbackCreateUiActions } from '../../create/data-access/state';
 import { feedbackList, feedbackListLoading } from '../data-access/queries';
 import { feedbackListActions } from '../data-access/state';
@@ -38,6 +39,7 @@ import { feedbackListActions } from '../data-access/state';
     MatIconButton,
     MatIcon,
     MatButton,
+    FeedbackListItemComponent,
   ],
 })
 export class FeedbackListComponent implements OnInit {
@@ -59,5 +61,9 @@ export class FeedbackListComponent implements OnInit {
     this.#store.dispatch(
       new feedbackCreateUiActions.OpenCreateFeedbackDialog(),
     );
+  }
+
+  postComment(comment: string, id: number): void {
+    this.#store.dispatch(new commentActions.PostComment(id, comment));
   }
 }
