@@ -6,10 +6,11 @@ import {
 } from '@angular/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import {
-  MatCard, MatCardActions,
+  MatCard,
+  MatCardActions,
   MatCardContent,
   MatCardHeader,
-  MatCardTitle
+  MatCardTitle,
 } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { Store } from '@ngxs/store';
@@ -17,6 +18,7 @@ import { Observable } from 'rxjs';
 import { LoaderComponent } from 'uf/shared/components/loader';
 import { groupId } from 'uf/shared/data-access/router';
 
+import { feedbackCreateUiActions } from '../../create/data-access/state';
 import { feedbackList, feedbackListLoading } from '../data-access/queries';
 import { feedbackListActions } from '../data-access/state';
 
@@ -51,5 +53,11 @@ export class FeedbackListComponent implements OnInit {
 
   getComments(feedbackId: number): void {
     this.#store.dispatch(new feedbackListActions.GetCommentList(feedbackId));
+  }
+
+  addFeedback(): void {
+    this.#store.dispatch(
+      new feedbackCreateUiActions.OpenCreateFeedbackDialog(),
+    );
   }
 }
