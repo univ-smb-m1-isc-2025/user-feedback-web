@@ -30,7 +30,7 @@ export class GroupCreateState {
   @Action(groupCreateActions.CreateGroup)
   createGroup(
     context: StateContext<GroupCreateStateModel>,
-    { body, ownerId }: groupCreateActions.CreateGroup,
+    { body }: groupCreateActions.CreateGroup,
   ): Observable<void> {
     context.setState(
       patch({
@@ -38,7 +38,7 @@ export class GroupCreateState {
       }),
     );
 
-    return this.#groupCreateService.createGroup(body, ownerId).pipe(
+    return this.#groupCreateService.createGroup(body).pipe(
       mergeMap((apiResult: GroupCreateApiResult) => {
         return context.dispatch(
           new groupCreateActions.CreateGroupSuccess(apiResult),

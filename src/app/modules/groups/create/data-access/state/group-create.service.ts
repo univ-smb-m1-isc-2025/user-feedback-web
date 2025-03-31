@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL } from 'uf/shared/data-access';
@@ -10,19 +10,10 @@ export class GroupCreateService {
   readonly #http = inject(HttpClient);
   readonly #apiUrl = inject(API_URL);
 
-  createGroup(
-    body: GroupCreateBody,
-    ownerId: number,
-  ): Observable<GroupCreateApiResult> {
-    let params: HttpParams = new HttpParams();
-    params = params.appendAll({
-      ownerId,
-    });
-
+  createGroup(body: GroupCreateBody): Observable<GroupCreateApiResult> {
     return this.#http.post<GroupCreateApiResult>(
       `${this.#apiUrl}/groups`,
       body,
-      { params },
     );
   }
 }

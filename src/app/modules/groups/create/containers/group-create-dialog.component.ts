@@ -57,7 +57,7 @@ export class GroupCreateDialogComponent {
 
   onSubmit(): void {
     this.#store.dispatch(
-      new groupCreateActions.CreateGroup(this.formGroup.getRawValue(), 1),
+      new groupCreateActions.CreateGroup(this.formGroup.getRawValue()),
     );
   }
 }

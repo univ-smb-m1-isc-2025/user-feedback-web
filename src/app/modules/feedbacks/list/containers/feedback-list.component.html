@@ -19,11 +19,22 @@
         <button mat-icon-button>
           <mat-icon>chat_bubble</mat-icon>
         </button>
-        @if (feedback.comments.length > 0) {
-          <button mat-button>{{ feedback.comments.length }} commentaires</button>
+        @if (feedback.commentCount > 0) {
+          <button mat-button (click)="getComments(feedback.id)">
+            {{ feedback.commentCount }} commentaires
+          </button>
         }
       </mat-card-actions>
     </mat-card>
+    @if (feedback.commentStatus === 'loading') {
+      <uf-loader />
+    } @else {
+      <ul>
+      @for (comment of feedback.comment; track comment) {
+        <li>{{comment.description}}</li>
+      }
+      </ul>
+    }
   } @empty {
     Y a point de feedback ici 🤷‍♂️
   }

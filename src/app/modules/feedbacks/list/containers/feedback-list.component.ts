@@ -13,6 +13,7 @@ import {
 } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { LoaderComponent } from 'uf/shared/components/loader';
 import { groupId } from 'uf/shared/data-access/router';
 
@@ -46,5 +47,9 @@ export class FeedbackListComponent implements OnInit {
   ngOnInit(): void {
     const group = this.#store.selectSnapshot(groupId);
     this.#store.dispatch(new feedbackListActions.GetFeedbackList(group));
+  }
+
+  getComments(feedbackId: number): void {
+    this.#store.dispatch(new feedbackListActions.GetCommentList(feedbackId));
   }
 }
