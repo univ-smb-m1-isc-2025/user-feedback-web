@@ -1,5 +1,10 @@
 import { Routes } from '@angular/router';
 import { provideStates } from '@ngxs/store';
+import { CommentState } from 'uf/modules/feedbacks/comment/state';
+import {
+  FeedbackCreateState,
+  FeedbackCreateUiState,
+} from 'uf/modules/feedbacks/create/data-access/state';
 import { FeedbackListState } from 'uf/modules/feedbacks/list/data-access/state';
 import { GroupDeleteState } from 'uf/modules/groups/delete/state';
 
@@ -9,10 +14,6 @@ import {
 } from './create/data-access/state';
 import { GroupLayoutComponent } from './layout';
 import { GroupListState } from './list/data-access/state';
-import {
-  FeedbackCreateState,
-  FeedbackCreateUiState,
-} from 'uf/modules/feedbacks/create/data-access/state';
 
 export const groupRoutes: Routes = [
   {
@@ -45,6 +46,7 @@ export const groupRoutes: Routes = [
             FeedbackListState,
             FeedbackCreateState,
             FeedbackCreateUiState,
+            CommentState,
           ]),
         ],
       },
