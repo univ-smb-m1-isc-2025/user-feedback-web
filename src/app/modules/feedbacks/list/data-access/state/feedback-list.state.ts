@@ -1,11 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
-import { patch } from '@ngxs/store/operators';
+import { patch, updateItem } from '@ngxs/store/operators';
 import { catchError, Observable, switchMap } from 'rxjs';
 
 import * as feedbackListActions from './feedback-list.actions';
-import { Feedback, FeedbackListStateModel } from './feedback-list.models';
+import {
+  Comment,
+  Feedback,
+  FeedbackListStateModel,
+} from './feedback-list.models';
 import { FeedbackListService } from './feedback-list.service';
 
 export const initialState: FeedbackListStateModel = {
@@ -57,7 +61,10 @@ export class FeedbackListState {
       patch({
         apiStatus: 'success',
         apiResult: patch({
-          data: apiResult,
+          data: apiResult.map((feedback: Feedback) => ({
+            ...feedback,
+            comment: [],
+          })),
         }),
       }),
     );
@@ -68,6 +75,73 @@ export class FeedbackListState {
     context.setState(
       patch({
         apiStatus: 'failure',
+      }),
+    );
+  }
+
+  @Action(feedbackListActions.GetCommentList)
+  getCommentList(
+    context: StateContext<FeedbackListStateModel>,
+    { feedbackId }: feedbackListActions.GetCommentList,
+  ): Observable<void> {
+    context.setState(
+      patch({
+        apiResult: patch({
+          data: updateItem(
+            (feedback) => feedback.id === feedbackId,
+            patch({ commentStatus: 'loading' }),
+          ),
+        }),
+      }),
+    );
+
+    return this.#feedbackListService.getComments(feedbackId).pipe(
+      switchMap((apiResult: Comment[]) => {
+        return context.dispatch(
+          new feedbackListActions.GetCommentListSuccess(apiResult, feedbackId),
+        );
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return context.dispatch(
+          new feedbackListActions.GetCommentListFailed(error, feedbackId),
+        );
+      }),
+    );
+  }
+
+  @Action(feedbackListActions.GetCommentListSuccess)
+  getCommentListSuccess(
+    context: StateContext<FeedbackListStateModel>,
+    { apiResult, feedbackId }: feedbackListActions.GetCommentListSuccess,
+  ): void {
+    context.setState(
+      patch({
+        apiResult: patch({
+          data: updateItem(
+            (feedback) => feedback.id === feedbackId,
+            patch({
+              comment: apiResult,
+              commentStatus: 'success',
+            }),
+          ),
+        }),
+      }),
+    );
+  }
+
+  @Action(feedbackListActions.GetCommentListFailed)
+  getCommentListFailed(
+    context: StateContext<FeedbackListStateModel>,
+    { feedbackId }: feedbackListActions.GetCommentListFailed,
+    ): void {
+    context.setState(
+      patch({
+        apiResult: patch({
+          data: updateItem(
+            (feedback) => feedback.id === feedbackId,
+            patch({ commentStatus: 'failure' }),
+          ),
+        }),
       }),
     );
   }

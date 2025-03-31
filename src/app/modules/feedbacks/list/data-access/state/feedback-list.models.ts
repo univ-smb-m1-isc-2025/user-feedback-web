@@ -13,10 +13,15 @@ export interface Feedback {
   title: string;
   description: string;
   user: User;
-  comments: Comment[]
+  groupID: number;
+  commentCount: number;
+  comment: Comment[];
+  commentStatus: ApiStatus | undefined
 }
 
 export interface Comment {
   id: number;
   description: string;
+  user: User;
+  parentFeedbackId: number;
 }
