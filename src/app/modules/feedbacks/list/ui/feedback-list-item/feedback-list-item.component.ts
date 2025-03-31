@@ -13,6 +13,7 @@ import {
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
+import { AvatarComponent } from 'uf/shared/components/avatar';
 import { LoaderComponent } from 'uf/shared/components/loader';
 
 import { Feedback } from '../../data-access/state';
@@ -32,13 +33,14 @@ import { Feedback } from '../../data-access/state';
     MatCardActions,
     MatCardAvatar,
     MatCardTitle,
-    MatCardSubtitle ,
+    MatCardSubtitle,
     MatIconButton,
     MatIcon,
     MatLabel,
     MatFormField,
     MatInput,
     FormsModule,
+    AvatarComponent,
   ],
 })
 export class FeedbackListItemComponent {
