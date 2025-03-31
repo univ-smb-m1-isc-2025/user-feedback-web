@@ -6,13 +6,15 @@
 @if (loading()) {
   <uf-loader />
 } @else {
-  @for (feedback of feedbackListSignal(); track feedback.id) {
-    <uf-feedback-list-item
-      [feedback]="feedback"
-      (getComments)="getComments($event)"
-      (postComment)="postComment($event, feedback.id)"
-    />
-  } @empty {
-    Y a point de feedback ici 🤷‍♂️
-  }
+  <div class="feedbacks">
+    @for (feedback of feedbackListSignal(); track feedback.id) {
+      <uf-feedback-list-item
+        [feedback]="feedback"
+        (getComments)="getComments($event)"
+        (postComment)="postComment($event, feedback.id)"
+      />
+    } @empty {
+      Y a point de feedback ici 🤷‍♂️
+    }
+  </div>
 }
