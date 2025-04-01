@@ -67,10 +67,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "user-feedback-web:build:production",
-              "ssl": false,
-              "proxyConfig": "src/proxy.conf.mjs",
-              "servePath": "/"
+              "buildTarget": "user-feedback-web:build:production"
             },
             "development": {
               "buildTarget": "user-feedback-web:build:development",

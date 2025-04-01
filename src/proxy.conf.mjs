@@ -4,7 +4,7 @@ const appConfig = config();
 
 export default {
   '/api': {
-    target: 'https://api.user-feedback.oups.net/api', // appConfig.apiUrlWithProtocol
+    target: appConfig.apiUrlWithProtocol,
     secure: false,
     changeOrigin: true,
     pathRewrite: {
