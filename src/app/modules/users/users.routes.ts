@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
+import { provideStates } from '@ngxs/store';
 
 import { UsersLayoutComponent } from './layout';
+import { UserSignUpState } from './sign-up/data-access/state';
 
 export const usersRoutes: Routes = [
   {
@@ -13,6 +15,14 @@ export const usersRoutes: Routes = [
           import('./sign-in').then(
             (component) => component.UsersSignInPageComponent,
           ),
+      },
+      {
+        path: 'sign-up',
+        loadComponent: () =>
+          import('./sign-up/containers').then(
+            (component) => component.UsersSignUpPageComponent,
+          ),
+        providers: [provideStates([UserSignUpState])],
       },
     ],
   },

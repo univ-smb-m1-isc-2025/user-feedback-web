@@ -4,6 +4,8 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { catchError, mergeMap, Observable } from 'rxjs';
 
+import { NotifyError } from 'uf/core/notification/data-access';
+
 import * as authActions from './auth.actions';
 import { AuthApiResult, AuthStateModel } from './auth.model';
 import { AuthService } from './auth.service';
@@ -62,5 +64,7 @@ export class AuthState {
         apiStatus: 'failure',
       }),
     );
+
+    context.dispatch(new NotifyError('La connexion a échoué'));
   }
 }

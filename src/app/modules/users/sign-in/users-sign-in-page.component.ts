@@ -13,6 +13,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { token } from 'uf/core/services/auth/queries';
 import { authActions } from 'uf/core/services/auth/state';
+import { routeUsersSignUp } from 'uf/modules/users';
 
 @Component({
   selector: 'uf-users-sign-in-page',
@@ -37,6 +38,7 @@ export class UsersSignInPageComponent {
   readonly #router = inject(Router);
 
   readonly jwtSignal = this.#store.selectSignal(token);
+  readonly routeUsersSignUpSignal = this.#store.selectSignal(routeUsersSignUp);
 
   jwtEffect = effect(() => {
     if (this.jwtSignal()) {

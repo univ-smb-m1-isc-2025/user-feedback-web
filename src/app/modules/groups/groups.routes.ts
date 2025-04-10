@@ -5,13 +5,14 @@ import {
   FeedbackCreateState,
   FeedbackCreateUiState,
 } from 'uf/modules/feedbacks/create/data-access/state';
+import { LikeState } from 'uf/modules/feedbacks/like';
 import { FeedbackListState } from 'uf/modules/feedbacks/list/data-access/state';
-import { GroupDeleteState } from 'uf/modules/groups/delete/state';
 
 import {
   GroupCreateState,
   GroupCreateUiState,
 } from './create/data-access/state';
+import { GroupDeleteState } from './delete/state';
 import { GroupLayoutComponent } from './layout';
 import { GroupListState } from './list/data-access/state';
 
@@ -47,6 +48,7 @@ export const groupRoutes: Routes = [
             FeedbackCreateState,
             FeedbackCreateUiState,
             CommentState,
+            LikeState,
           ]),
         ],
       },

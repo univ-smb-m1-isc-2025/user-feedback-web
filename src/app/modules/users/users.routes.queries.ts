@@ -5,3 +5,8 @@ export const routeUsersSignIn = createSelector(
   [],
   (): UfRoute => ['/', 'users', 'sign-in'],
 );
+
+export const routeUsersSignUp = createSelector(
+  [],
+  (): UfRoute => ['/', 'users', 'sign-up'],
+);
