@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -30,6 +30,16 @@ jobs:
           cache: 'npm'
 
       - run: npm i
+
+      - name: Run Unit Tests
+        run: npm run test:coverage
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Format Check
+        run: npm run format:check:ci
+
       - run: npm run build
 
       - name: Log in to the Container registry
