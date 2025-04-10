@@ -12,6 +12,10 @@
         [feedback]="feedback"
         (getComments)="getComments($event)"
         (postComment)="postComment($event, feedback.id)"
+        (upVoteComment)="upVoteComment($event, feedback.id)"
+        (downVoteComment)="downVoteComment($event, feedback.id)"
+        (upVoteFeedback)="upVoteFeedback($event)"
+        (downVoteFeedback)="downVoteFeedback($event)"
       />
     } @empty {
       Y a point de feedback ici 🤷‍♂️

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import {
@@ -8,7 +13,7 @@ import {
   MatCardContent,
   MatCardHeader,
   MatCardSubtitle,
-  MatCardTitle
+  MatCardTitle,
 } from '@angular/material/card';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
@@ -48,6 +53,10 @@ export class FeedbackListItemComponent {
 
   readonly getComments = output<number>();
   readonly postComment = output<string>();
+  readonly upVoteFeedback = output<number>();
+  readonly downVoteFeedback = output<number>();
+  readonly upVoteComment = output<number>();
+  readonly downVoteComment = output<number>();
 
   isCommentAreaOpen = false;
   isCommentFormOpen = false;
@@ -69,5 +78,21 @@ export class FeedbackListItemComponent {
     }
 
     this.isCommentAreaOpen = !this.isCommentAreaOpen;
+  }
+
+  likeFeedback(feedbackId: number): void {
+    this.upVoteFeedback.emit(feedbackId);
+  }
+
+  dislikeFeedback(feedbackId: number): void {
+    this.downVoteFeedback.emit(feedbackId);
+  }
+
+  likeComment(commentId: number): void {
+    this.upVoteComment.emit(commentId);
+  }
+
+  dislikeComment(commentId: number): void {
+    this.downVoteComment.emit(commentId);
   }
 }

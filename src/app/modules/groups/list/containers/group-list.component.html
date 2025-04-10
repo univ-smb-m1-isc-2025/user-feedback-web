@@ -11,7 +11,11 @@
       <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
         <mat-card-header>
           <mat-card-title>{{ group.name }}</mat-card-title>
-          <button mat-icon-button (click)="prevent($event)" [matMenuTriggerFor]="menu">
+          <button
+            mat-icon-button
+            (click)="prevent($event)"
+            [matMenuTriggerFor]="menu"
+          >
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">

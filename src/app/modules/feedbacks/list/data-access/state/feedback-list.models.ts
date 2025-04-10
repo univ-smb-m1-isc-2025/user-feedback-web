@@ -15,8 +15,10 @@ export interface Feedback {
   user: User;
   groupID: number;
   commentCount: number;
+  likesCount: number;
+  dislikesCount: number;
   comment: Comment[];
-  commentStatus: ApiStatus | undefined
+  getCommentStatus: ApiStatus | undefined;
 }
 
 export interface Comment {
@@ -24,4 +26,6 @@ export interface Comment {
   description: string;
   user: User;
   parentFeedbackId: number;
+  likesCount: number;
+  dislikesCount: number;
 }

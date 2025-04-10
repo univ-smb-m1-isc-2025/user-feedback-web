@@ -89,7 +89,7 @@ export class FeedbackListState {
         apiResult: patch({
           data: updateItem(
             (feedback) => feedback.id === feedbackId,
-            patch({ commentStatus: 'loading' }),
+            patch({ getCommentStatus: 'loading' }),
           ),
         }),
       }),
@@ -121,7 +121,7 @@ export class FeedbackListState {
             (feedback) => feedback.id === feedbackId,
             patch({
               comment: apiResult,
-              commentStatus: 'success',
+              getCommentStatus: 'success',
             }),
           ),
         }),
@@ -133,13 +133,13 @@ export class FeedbackListState {
   getCommentListFailed(
     context: StateContext<FeedbackListStateModel>,
     { feedbackId }: feedbackListActions.GetCommentListFailed,
-    ): void {
+  ): void {
     context.setState(
       patch({
         apiResult: patch({
           data: updateItem(
             (feedback) => feedback.id === feedbackId,
-            patch({ commentStatus: 'failure' }),
+            patch({ getCommentStatus: 'failure' }),
           ),
         }),
       }),

@@ -12,7 +12,7 @@ export interface FeedbackCreateApiResult {
   description: string;
   groupID: number;
   commentCount: number;
-  user: User
+  user: User;
 }
 
 export interface FeedbackCreateBody {
