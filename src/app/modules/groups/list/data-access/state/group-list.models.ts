@@ -1,3 +1,4 @@
+import { User } from 'uf/core/services/auth/state';
 import { ApiStatus } from 'uf/shared/models';
 
 export interface GroupListStateModel {
@@ -12,11 +13,4 @@ export interface Group {
   name: string;
   description: string;
   owner: User;
-}
-
-export interface User {
-  id: number;
-  username: string;
-  role: string;
-  email: string;
 }

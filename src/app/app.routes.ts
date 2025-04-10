@@ -1,4 +1,9 @@
 import { Routes } from '@angular/router';
+import { provideStates } from '@ngxs/store';
+import {
+  ChangeProfilePictureState,
+  ChangeProfilePictureUiState,
+} from 'uf/modules/users/change-profile-picture/data-access/state';
 
 export const routes: Routes = [
   {
@@ -19,6 +24,9 @@ export const routes: Routes = [
       import('./modules/layout').then(
         (component) => component.AppLayoutComponent,
       ),
+    providers: [
+      provideStates([ChangeProfilePictureState, ChangeProfilePictureUiState]),
+    ],
     children: [
       {
         path: 'groups',

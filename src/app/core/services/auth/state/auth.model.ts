@@ -7,6 +7,7 @@ export interface AuthStateModel {
 
 export interface AuthApiResult extends TokenApiResult {
   refreshToken: string;
+  user: User;
 }
 
 export interface TokenApiResult {
@@ -17,4 +18,13 @@ export interface TokenApiResult {
 export interface LoginRequestBody {
   username: string;
   password: string;
+}
+
+export interface User {
+  id: number;
+  username: string;
+  role: string;
+  email: string;
+  groupCount: number;
+  feedbackCount: number;
 }

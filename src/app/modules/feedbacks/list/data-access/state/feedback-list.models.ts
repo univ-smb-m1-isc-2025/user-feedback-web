@@ -1,4 +1,4 @@
-import { User } from 'uf/modules/groups/list/data-access/state';
+import { User } from 'uf/core/services/auth/state';
 import { ApiStatus } from 'uf/shared/models';
 
 export interface FeedbackListStateModel {

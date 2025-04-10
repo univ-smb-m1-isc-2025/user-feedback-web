@@ -1,4 +1,4 @@
-import { inject, NgZone } from '@angular/core';
+import { inject, Injectable, NgZone } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Action, State } from '@ngxs/store';
 
@@ -9,6 +9,7 @@ import { GroupCreateDialogComponent } from '../../containers';
 @State<never>({
   name: 'groupCreateUi',
 })
+@Injectable()
 export class GroupCreateUiState {
   readonly #dialog = inject(MatDialog);
   readonly #ngZone = inject(NgZone);
