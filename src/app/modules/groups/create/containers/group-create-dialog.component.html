@@ -12,7 +12,7 @@
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button [disabled]="loading()" (click)="onCancel()">
+    <button mat-button [disabled]="loading()" (click)="onCancel()" type="button">
       Annuler
     </button>
     <button mat-flat-button [disabled]="loading()" type="submit">Créer</button>

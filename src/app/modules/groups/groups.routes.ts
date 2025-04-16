@@ -15,6 +15,7 @@ import {
 import { GroupDeleteState } from './delete/state';
 import { GroupLayoutComponent } from './layout';
 import { GroupListState } from './list/data-access/state';
+import { GroupNotJoinedListState } from './not-joined-list/state';
 
 export const groupRoutes: Routes = [
   {
@@ -33,6 +34,7 @@ export const groupRoutes: Routes = [
             GroupCreateState,
             GroupCreateUiState,
             GroupListState,
+            GroupNotJoinedListState,
           ]),
         ],
       },
