@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { catchError, mergeMap, Observable } from 'rxjs';
-import { NotifyError, NotifySuccess } from 'uf/core/notification/data-access';
+import { NotifySuccess } from 'uf/core/notification/data-access';
 
 import * as changeProfilePictureActions from './change-profile-picture.actions';
 import { ChangeProfilePictureStateModel } from './change-profile-picture.models';
@@ -65,8 +65,6 @@ export class ChangeProfilePictureState {
       }),
     );
 
-    context.dispatch(
-      new NotifyError("La photo de profile n'a pas pu être changée"),
-    );
+    context.dispatch(new NotifySuccess('Image changée avec succès'));
   }
 }

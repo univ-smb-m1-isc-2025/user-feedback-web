@@ -1,0 +1,10 @@
+.user-infos {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  uf-avatar {
+    width: 40px;
+    height: 40px;
+  }
+}

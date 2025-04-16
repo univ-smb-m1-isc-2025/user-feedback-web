@@ -11,9 +11,10 @@ import {
   MatCardHeader,
   MatCardTitle,
 } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { token } from 'uf/core/services/auth/queries';
+import { token, user } from 'uf/core/services/auth/queries';
 import { routeUsersSignIn } from 'uf/modules/users';
 import { AvatarComponent } from 'uf/shared/components/avatar';
 
@@ -23,6 +24,7 @@ import { changeProfilePictureUiActions } from '../users/change-profile-picture/d
   selector: 'uf-app-layout',
   standalone: true,
   templateUrl: './app-layout.component.html',
+  styleUrl: './app-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterOutlet,
@@ -31,6 +33,7 @@ import { changeProfilePictureUiActions } from '../users/change-profile-picture/d
     MatCardTitle,
     MatCardHeader,
     MatButton,
+    MatIcon,
   ],
 })
 export class AppLayoutComponent {
@@ -39,6 +42,7 @@ export class AppLayoutComponent {
 
   readonly jwtSignal = this.#store.selectSignal(token);
   readonly routeUsersSignInSignal = this.#store.selectSignal(routeUsersSignIn);
+  readonly user = this.#store.selectSignal(user);
 
   jwtEffect = effect(() => {
     if (!this.jwtSignal()) {

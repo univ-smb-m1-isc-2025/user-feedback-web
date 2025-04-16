@@ -1,5 +1,9 @@
-<button mat-button (click)="openChangeProfilePictureDialog()">
-  Changer de photo de profile
-</button>
+@if (user(); as user) {
+  <div class="user-infos" (click)="openChangeProfilePictureDialog()">
+    <uf-avatar [userId]="user.id" />
+    <mat-icon>edit</mat-icon>
+    <p>{{user.username}}</p>
+  </div>
+}
 
 <router-outlet />

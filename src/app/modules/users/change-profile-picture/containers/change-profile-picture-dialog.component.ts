@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import {
@@ -33,6 +33,8 @@ export class ChangeProfilePictureDialogComponent {
 
   readonly loading = this.#store.selectSignal(changeProfilePictureLoading);
 
+  readonly previewUrl = signal('');
+
   file: File | undefined;
 
   onCancel(): void {
@@ -51,8 +53,14 @@ export class ChangeProfilePictureDialogComponent {
 
   onFileSelected(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files) {
-      this.file = inputElement.files[0] as File;
+    if (inputElement.files && inputElement.files.length > 0) {
+      this.file = inputElement.files[0];
+
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        this.previewUrl.set(reader.result as string);
+      });
+      reader.readAsDataURL(this.file);
     }
   }
 }

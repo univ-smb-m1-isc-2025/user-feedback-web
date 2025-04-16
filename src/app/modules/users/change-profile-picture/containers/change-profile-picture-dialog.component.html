@@ -13,6 +13,12 @@
       hidden
     />
   </div>
+
+  @if (previewUrl() !== '') {
+    <div class="image-preview">
+      <img [src]="previewUrl()" alt="Aperçu de l'image" />
+    </div>
+  }
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
