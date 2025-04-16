@@ -1,5 +1,44 @@
 mat-dialog-content {
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
+  padding-top: 0.5rem;
   min-width: 500px;
+
+  p {
+    margin: 0 0 0.5rem;
+    color: #666;
+    font-size: 1rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+mat-dialog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  gap: 1rem;
+
+  button {
+    min-width: 100px;
+  }
+
+  button[mat-flat-button] {
+    background-color: #1976d2;
+    color: white;
+
+    &:hover {
+      background-color: #1565c0;
+    }
+  }
 }

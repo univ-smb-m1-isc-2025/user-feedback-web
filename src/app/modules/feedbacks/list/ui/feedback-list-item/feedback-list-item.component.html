@@ -1,36 +1,45 @@
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" class="feedback-card">
   <mat-card-header>
     <uf-avatar mat-card-avatar [userId]="feedback().user.id" />
-    <mat-card-title>{{ feedback().title }}</mat-card-title>
-    <mat-card-subtitle>{{ feedback().user.username }}</mat-card-subtitle>
+    <div class="feedback-header-text">
+      <mat-card-title>{{ feedback().title }}</mat-card-title>
+      <mat-card-subtitle>{{ feedback().user.username }}</mat-card-subtitle>
+    </div>
   </mat-card-header>
+
   <mat-card-content>
     <p>{{ feedback().description }}</p>
+
     @if (isCommentFormOpen) {
-      <mat-form-field>
-        <mat-label>Ajouter un commentaire</mat-label>
-        <input matInput [(ngModel)]="comment" />
-      </mat-form-field>
-      <button mat-flat-button (click)="sendComment()">Poster</button>
+      <div class="comment-form">
+        <mat-form-field appearance="outline" class="comment-field">
+          <mat-label>Ajouter un commentaire</mat-label>
+          <input matInput [(ngModel)]="comment" />
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="sendComment()">Poster</button>
+      </div>
     }
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="dislikeFeedback(feedback().id)">
-      {{ feedback().dislikesCount }}
-      <mat-icon [class]="feedback().stateLikeUser === -1 ? '' : 'material-icons-outlined'">thumb_down</mat-icon>
-    </button>
-    <button mat-button (click)="likeFeedback(feedback().id)">
-      {{ feedback().likesCount }}
-      <mat-icon [class]="feedback().stateLikeUser === 1 ? '' : 'material-icons-outlined'">thumb_up</mat-icon>
-    </button>
-    <button mat-button (click)="toggleCommentForm()">
-      <mat-icon>chat_bubble</mat-icon>
-    </button>
-    @if (feedback().commentCount > 0) {
-      <button mat-button (click)="getFeedbackComments(feedback().id)">
-        {{ feedback().commentCount }} commentaires
+
+  <mat-card-actions align="start">
+    <div class="feedback-actions">
+      <button mat-button (click)="dislikeFeedback(feedback().id)">
+        <mat-icon [class]="feedback().stateLikeUser === -1 ? '' : 'material-icons-outlined'">thumb_down</mat-icon>
+        {{ feedback().dislikesCount }}
       </button>
-    }
+      <button mat-button (click)="likeFeedback(feedback().id)">
+        <mat-icon [class]="feedback().stateLikeUser === 1 ? '' : 'material-icons-outlined'">thumb_up</mat-icon>
+        {{ feedback().likesCount }}
+      </button>
+      <button mat-button (click)="toggleCommentForm()">
+        <mat-icon>chat_bubble</mat-icon>
+      </button>
+      @if (feedback().commentCount > 0) {
+        <button mat-button (click)="getFeedbackComments(feedback().id)">
+          {{ feedback().commentCount }} commentaire{{ feedback().commentCount > 1 ? 's' : '' }}
+        </button>
+      }
+    </div>
   </mat-card-actions>
 </mat-card>
 
@@ -40,21 +49,27 @@
   } @else {
     <div class="feedback-comments">
       @for (comment of feedback().comment; track comment) {
-        <mat-card-header>
-          <uf-avatar mat-card-avatar [userId]="feedback().user.id" />
-          <mat-card-title>{{ comment.description }}</mat-card-title>
-          <mat-card-subtitle>{{ feedback().user.username }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-          <button mat-button (click)="dislikeComment(comment.id)">
-            {{ comment.dislikesCount }}
-            <mat-icon [class]="comment.stateLikeUser === -1 ? '' : 'material-icons-outlined'">thumb_down</mat-icon>
-          </button>
-          <button mat-button (click)="likeComment(comment.id)">
-            {{ comment.likesCount }}
-            <mat-icon [class]="comment.stateLikeUser === 1 ? '' : 'material-icons-outlined'">thumb_up</mat-icon>
-          </button>
-        </mat-card-actions>
+        <div class="comment-thread-item">
+          <uf-avatar [userId]="comment.user.id" class="comment-avatar" />
+          <div class="comment-content">
+            <div class="comment-header">
+              <span class="username">{{ comment.user.username }}</span>
+            </div>
+            <div class="comment-body">
+              {{ comment.description }}
+            </div>
+            <div class="comment-actions">
+              <button mat-icon-button (click)="dislikeComment(comment.id)">
+                <mat-icon [class]="comment.stateLikeUser === -1 ? '' : 'material-icons-outlined'">thumb_down</mat-icon>
+                <span>{{ comment.dislikesCount }}</span>
+              </button>
+              <button mat-icon-button (click)="likeComment(comment.id)">
+                <mat-icon [class]="comment.stateLikeUser === 1 ? '' : 'material-icons-outlined'">thumb_up</mat-icon>
+                <span>{{ comment.likesCount }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
       }
     </div>
   }
