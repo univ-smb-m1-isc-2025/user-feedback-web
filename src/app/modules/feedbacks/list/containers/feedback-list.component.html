@@ -1,5 +1,8 @@
 <header>
-  <h1>Feedbacks</h1>
+  <h1>
+    <mat-icon (click)="navigateToGroupList()">arrow_back_ios</mat-icon>
+    {{ groupDetails()?.name }}
+  </h1>
   <button mat-flat-button (click)="addFeedback()">Ajouter un feedback</button>
 </header>
 

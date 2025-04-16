@@ -13,7 +13,9 @@ import {
   MatCardTitle,
 } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { groupDetails } from 'uf/modules/groups/details';
 import { LoaderComponent } from 'uf/shared/components/loader';
 import { groupId } from 'uf/shared/data-access/router';
 
@@ -45,9 +47,17 @@ import { FeedbackListItemComponent } from '../ui/feedback-list-item';
 })
 export class FeedbackListComponent implements OnInit {
   readonly #store = inject(Store);
+  readonly #router = inject(Router);
 
   readonly feedbackListSignal = this.#store.selectSignal(feedbackList);
   readonly loading = this.#store.selectSignal(feedbackListLoading);
+  readonly groupDetails = this.#store.selectSignal(groupDetails);
+
+  readonly routeGroupList = ['/', 'groups'];
+
+  navigateToGroupList(): void {
+    this.#router.navigate(this.routeGroupList);
+  }
 
   ngOnInit(): void {
     const group = this.#store.selectSnapshot(groupId);

@@ -14,3 +14,8 @@ export const changeProfilePictureLoading = createSelector(
   [changeProfilePictureSlice.apiStatus],
   (apiStatus) => apiStatus === 'loading',
 );
+
+export const cacheBuster = createSelector(
+  [changeProfilePictureSlice.cacheBuster],
+  (cacheBuster) => cacheBuster,
+)

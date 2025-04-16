@@ -26,6 +26,7 @@ export class ChangeProfilePictureUiState {
   @Action([
     changeProfilePictureUiActions.CloseChangeProfilePictureDialog,
     changeProfilePictureActions.ChangeProfilePictureSuccess,
+    changeProfilePictureActions.ChangeProfilePictureFailed,
   ])
   closeChangeProfilePictureDialog(): void {
     this.#ngZone.run(() => {

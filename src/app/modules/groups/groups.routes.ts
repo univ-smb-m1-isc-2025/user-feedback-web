@@ -13,6 +13,7 @@ import {
   GroupCreateUiState,
 } from './create/data-access/state';
 import { GroupDeleteState } from './delete/state';
+import { GroupDetailsState } from './details';
 import { GroupLayoutComponent } from './layout';
 import { GroupListState } from './list/data-access/state';
 import { GroupNotJoinedListState } from './not-joined-list/state';
@@ -21,6 +22,7 @@ export const groupRoutes: Routes = [
   {
     path: '',
     component: GroupLayoutComponent,
+    providers: [provideStates([GroupDetailsState])],
     children: [
       {
         path: '',

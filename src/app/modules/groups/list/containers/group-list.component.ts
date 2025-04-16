@@ -15,6 +15,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { groupDetailsActions } from 'uf/modules/groups/details';
 import { LoaderComponent } from 'uf/shared/components/loader';
 
 import { groupCreateUiActions } from '../../create/data-access/state';
@@ -63,6 +64,7 @@ export class GroupListComponent implements OnInit {
   }
 
   onClickGroup(groupId: number): void {
+    this.#store.dispatch(new groupDetailsActions.GetGroupDetails(groupId));
     this.#router.navigate(['/', 'groups', groupId]);
   }
 

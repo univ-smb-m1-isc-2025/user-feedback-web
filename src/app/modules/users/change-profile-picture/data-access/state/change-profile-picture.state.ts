@@ -11,6 +11,7 @@ import { ChangeProfilePictureService } from './change-profile-picture.service';
 
 export const initialState: ChangeProfilePictureStateModel = {
   apiStatus: undefined,
+  cacheBuster: Date.now(),
 };
 
 @State<ChangeProfilePictureStateModel>({
@@ -51,6 +52,7 @@ export class ChangeProfilePictureState {
     context.setState(
       patch({
         apiStatus: 'success',
+        cacheBuster: Date.now(),
       }),
     );
 
@@ -62,6 +64,7 @@ export class ChangeProfilePictureState {
     context.setState(
       patch({
         apiStatus: 'failure',
+        cacheBuster: Date.now(),
       }),
     );
 
