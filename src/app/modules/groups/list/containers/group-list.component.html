@@ -1,12 +1,18 @@
-<header>
-  <h1>Group List</h1>
-  <button mat-flat-button (click)="addGroup()">Ajouter un groupe</button>
-</header>
+<div class="page-header">
+  <h1>
+    <mat-icon>group_work</mat-icon>
+    Groupes
+  </h1>
+  <button mat-flat-button (click)="addGroup()">
+    <mat-icon>add</mat-icon>
+    Ajouter un groupe
+  </button>
+</div>
 
 @if (groupListLoading()) {
-  <uf-loader />
+  <uf-loader [diameter]="40" />
 } @else {
-  <h3>Mes groupes</h3>
+  <h2 class="section-title">Mes groupes</h2>
   <div class="group-list">
     @for (group of groupListSignal(); track group.id) {
       <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
@@ -21,50 +27,45 @@
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="deleteGroup(group.id)">
-              <mat-icon>delete</mat-icon>
+              <mat-icon color="warn">delete</mat-icon>
               <span>Supprimer</span>
             </button>
           </mat-menu>
         </mat-card-header>
         <mat-card-content>
-          <p>{{ group.description }}</p>
+          {{ group.description }}
         </mat-card-content>
       </mat-card>
     } @empty {
-      T'y a point rejoint un groupe 👀
+      <div class="empty-state">
+        <mat-icon>group_off</mat-icon>
+        <h3>Aucun groupe pour le moment</h3>
+        <p>
+          Créez votre premier groupe pour commencer à recueillir des feedbacks
+        </p>
+        <button mat-flat-button color="primary" (click)="addGroup()">
+          <mat-icon>add</mat-icon>
+          Créer un groupe
+        </button>
+      </div>
     }
   </div>
-}
 
-@if (groupNotJoinedLoading()) {
-  <uf-loader />
-} @else {
-  <h3>Groupes à rejoindre</h3>
-  <div class="group-list">
-    @for (group of groupNotJoinedListSignal(); track group.id) {
-      <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
-        <mat-card-header>
-          <mat-card-title>{{ group.name }}</mat-card-title>
-          <button
-            mat-icon-button
-            (click)="prevent($event)"
-            [matMenuTriggerFor]="menu"
-          >
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="deleteGroup(group.id)">
-              <mat-icon>delete</mat-icon>
-              <span>Supprimer</span>
-            </button>
-          </mat-menu>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ group.description }}</p>
-        </mat-card-content>
-      </mat-card>
-    } @empty {
-      Y a point de groupe, va en créer nom de dieu ! 👆
-    }
-  </div>
+  @if (groupNotJoinedListSignal().length > 0) {
+    <div class="second-section">
+      <h2 class="section-title">Autres groupes disponibles</h2>
+      <div class="group-list">
+        @for (group of groupNotJoinedListSignal(); track group.id) {
+          <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
+            <mat-card-header>
+              <mat-card-title>{{ group.name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              {{ group.description }}
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    </div>
+  }
 }

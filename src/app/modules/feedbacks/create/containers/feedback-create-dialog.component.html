@@ -1,20 +1,50 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
-  <h2 mat-dialog-title>Ajouter un feedback</h2>
+<div class="dialog-header">
+  <p mat-dialog-title>Nouveau feedback</p>
+</div>
 
-  <mat-dialog-content class="feedback-form-content">
+<mat-dialog-content>
+  <p class="dialog-description">
+    Partagez votre feedback avec le groupe pour améliorer le projet.
+  </p>
+
+  <form [formGroup]="formGroup">
     <mat-form-field appearance="outline">
-      <mat-label>Intitulé du feedback</mat-label>
-      <input matInput formControlName="title" required />
+      <mat-label>Titre</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Ex: Suggestion d'amélioration pour..."
+      />
+      <mat-icon matPrefix>title</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" rows="4"></textarea>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Décrivez votre feedback en détail..."
+      ></textarea>
+      <mat-icon matPrefix>description</mat-icon>
     </mat-form-field>
-  </mat-dialog-content>
+  </form>
+</mat-dialog-content>
 
-  <mat-dialog-actions align="end">
-    <button mat-button [disabled]="loading()" (click)="onCancel()" type="button">Annuler</button>
-    <button mat-flat-button color="primary" [disabled]="loading()" type="submit">Créer</button>
-  </mat-dialog-actions>
-</form>
+<mat-dialog-actions>
+  <button
+    mat-button
+    class="cancel-btn"
+    [disabled]="loading()"
+    (click)="onCancel()"
+  >
+    Annuler
+  </button>
+  <button
+    mat-flat-button
+    class="create-btn"
+    [disabled]="formGroup.invalid || loading()"
+    (click)="onSubmit()"
+  >
+    <span>Publier</span>
+  </button>
+</mat-dialog-actions>

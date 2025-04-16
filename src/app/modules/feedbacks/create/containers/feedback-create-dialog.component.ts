@@ -21,6 +21,7 @@ import {
   feedbackCreateActions,
   feedbackCreateUiActions,
 } from '../data-access/state';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'uf-create-feedback-dialog',
@@ -37,6 +38,7 @@ import {
     MatInput,
     MatButton,
     MatDialogActions,
+    MatIcon,
   ],
 })
 export class FeedbackCreateDialogComponent {

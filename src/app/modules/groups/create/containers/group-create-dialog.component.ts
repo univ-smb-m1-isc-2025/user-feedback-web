@@ -17,6 +17,7 @@ import { Store } from '@ngxs/store';
 
 import { groupCreateLoading } from '../data-access/queries';
 import { groupCreateActions, groupCreateUiActions } from '../data-access/state';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'uf-create-group-dialog',
@@ -25,7 +26,6 @@ import { groupCreateActions, groupCreateUiActions } from '../data-access/state';
   styleUrl: './group-create-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    MatDialogTitle,
     MatDialogContent,
     ReactiveFormsModule,
     MatFormField,
@@ -33,6 +33,8 @@ import { groupCreateActions, groupCreateUiActions } from '../data-access/state';
     MatInput,
     MatButton,
     MatDialogActions,
+    MatIcon,
+    MatDialogTitle,
   ],
 })
 export class GroupCreateDialogComponent {

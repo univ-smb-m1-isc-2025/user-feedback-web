@@ -8,6 +8,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAnchor, MatButton } from '@angular/material/button';
 import { MatExpansionPanelActionRow } from '@angular/material/expansion';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngxs/store';
@@ -30,6 +31,7 @@ import { routeUsersSignUp } from 'uf/modules/users';
     RouterLink,
     MatAnchor,
     MatButton,
+    MatIcon,
   ],
 })
 export class UsersSignInPageComponent {

@@ -1,3 +1,95 @@
+:host {
+  display: block;
+  height: 100vh;
+  background-color: var(--neutral-50);
+}
+
+.app-header {
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-2) var(--space-5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--royal-blue);
+  font-weight: 600;
+  font-size: 1.5rem;
+  
+  .brand-icon {
+    font-size: 1.75rem;
+  }
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: var(--neutral-100);
+  }
+  
+  .avatar-container {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px white;
+    
+    uf-avatar {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .edit-icon {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      background-color: var(--royal-blue);
+      color: white;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid white;
+      
+      mat-icon {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+  
+  .username {
+    font-weight: 500;
+    color: var(--neutral-700);
+  }
+}
+
+.content-container {
+  padding: var(--space-4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .user-infos {
   display: flex;
   gap: 5px;

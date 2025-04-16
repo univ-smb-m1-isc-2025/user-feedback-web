@@ -1,9 +1,22 @@
-@if (user(); as user) {
-  <div class="user-infos" (click)="openChangeProfilePictureDialog()">
-    <uf-avatar [userId]="user.id" />
-    <mat-icon>edit</mat-icon>
-    <p>{{user.username}}</p>
+<header class="app-header">
+  <div class="app-brand">
+    <mat-icon class="brand-icon">forum</mat-icon>
+    <span>UserFeedback</span>
   </div>
-}
 
-<router-outlet />
+  @if (user(); as user) {
+    <div class="user-profile" (click)="openChangeProfilePictureDialog()">
+      <div class="avatar-container">
+        <uf-avatar [userId]="user.id" />
+        <div class="edit-icon">
+          <mat-icon>edit</mat-icon>
+        </div>
+      </div>
+      <span class="username">{{ user.username }}</span>
+    </div>
+  }
+</header>
+
+<main class="content-container">
+  <router-outlet />
+</main>

@@ -1,22 +1,37 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="signInForm">
-  <h2>Connexion</h2>
-  <mat-form-field>
-    <mat-label>Username</mat-label>
-    <input matInput formControlName="username" type="text" />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input matInput formControlName="password" type="password" />
-  </mat-form-field>
-  <mat-action-row>
-    <a mat-button [routerLink]="routeUsersSignUpSignal()">Créer un compte</a>
-    <button
-      mat-flat-button
-      [disabled]="signInForm.invalid"
-      type="submit"
-      color="accent"
-    >
-      Se connecter
-    </button>
-  </mat-action-row>
-</form>
+<div class="auth-card">
+  <div class="auth-header">
+    <h2>Bienvenue</h2>
+    <p class="subtitle">Connectez-vous à votre compte</p>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="signInForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <mat-icon matPrefix class="input-icon">person</mat-icon>
+      <input
+        matInput
+        formControlName="username"
+        type="text"
+        autocomplete="username"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <mat-icon matPrefix class="input-icon">lock</mat-icon>
+      <input
+        matInput
+        formControlName="password"
+        type="password"
+        autocomplete="current-password"
+      />
+    </mat-form-field>
+
+    <mat-action-row>
+      <a mat-button [routerLink]="routeUsersSignUpSignal()">Créer un compte</a>
+      <button mat-flat-button [disabled]="signInForm.invalid" type="submit">
+        Se connecter
+      </button>
+    </mat-action-row>
+  </form>
+</div>

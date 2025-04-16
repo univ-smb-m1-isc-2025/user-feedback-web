@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatAnchor } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { UfRoute } from 'uf/shared/data-access/router';
 
@@ -8,7 +9,7 @@ import { UfRoute } from 'uf/shared/data-access/router';
   standalone: true,
   templateUrl: './page-error-not-found.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatAnchor, RouterLink],
+  imports: [MatAnchor,MatIcon , RouterLink],
 })
 export class PageErrorNotFoundComponent {
   readonly routeHome: UfRoute = ['/'];

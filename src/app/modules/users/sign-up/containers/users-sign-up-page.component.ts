@@ -9,6 +9,7 @@ import { Store } from '@ngxs/store';
 import { routeUsersSignIn } from 'uf/modules/users';
 
 import { userSignUpActions } from '../data-access/state';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'uf-users-sign-up-page',
@@ -25,6 +26,7 @@ import { userSignUpActions } from '../data-access/state';
     RouterLink,
     MatAnchor,
     MatButton,
+    MatIcon,
   ],
 })
 export class UsersSignUpPageComponent {
