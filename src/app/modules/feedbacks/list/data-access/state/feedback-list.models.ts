@@ -19,6 +19,7 @@ export interface Feedback {
   dislikesCount: number;
   comment: Comment[];
   getCommentStatus: ApiStatus | undefined;
+  stateLikeUser: LikeState;
 }
 
 export interface Comment {
@@ -28,4 +29,7 @@ export interface Comment {
   parentFeedbackId: number;
   likesCount: number;
   dislikesCount: number;
+  stateLikeUser: LikeState;
 }
+
+export type LikeState = -1 | 0 | 1;

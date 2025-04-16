@@ -9,14 +9,16 @@ export class LikeService {
   readonly #apiUrl = inject(API_URL);
 
   likeComment(commentId: number, likeOrDislike: boolean): Observable<void> {
-    return this.#http.get<void>(
+    return this.#http.post<void>(
       `${this.#apiUrl}/like/${commentId}/comment?isLike=${likeOrDislike}`,
+      {},
     );
   }
 
   likeFeedback(feedbackId: number, likeOrDislike: boolean): Observable<void> {
-    return this.#http.get<void>(
+    return this.#http.post<void>(
       `${this.#apiUrl}/like/${feedbackId}/feedback?isLike=${likeOrDislike}`,
+      {},
     );
   }
 }

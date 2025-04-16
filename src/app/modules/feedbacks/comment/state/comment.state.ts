@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, State, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { catchError, mergeMap, Observable } from 'rxjs';
 import {
@@ -9,6 +9,7 @@ import {
 } from 'uf/modules/feedbacks/comment/state/comment.models';
 import { CommentService } from 'uf/modules/feedbacks/comment/state/comment.service';
 import * as feedbackListActions from 'uf/modules/feedbacks/list/data-access/state/feedback-list.actions';
+import { groupId } from 'uf/shared/data-access/router';
 
 import * as commentActions from './comment.actions';
 
@@ -24,6 +25,7 @@ export const initialState: CreateCommentStateModel = {
 @Injectable()
 export class CommentState {
   readonly #commentService = inject(CommentService);
+  readonly #store = inject(Store);
 
   @Action(commentActions.PostComment)
   postComment(
@@ -60,7 +62,12 @@ export class CommentState {
       }),
     );
 
-    context.dispatch(new feedbackListActions.GetCommentList(feedbackId));
+    const group = this.#store.selectSnapshot(groupId);
+
+    context.dispatch([
+      new feedbackListActions.GetFeedbackList(group),
+      new feedbackListActions.GetCommentList(feedbackId),
+    ]);
   }
 
   @Action(commentActions.PostCommentFailed)

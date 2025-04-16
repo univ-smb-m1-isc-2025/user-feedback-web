@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,12 +12,12 @@ import { environment } from 'uf/environments/environment';
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage],
 })
 export class AvatarComponent {
   readonly userId = input.required<number>();
 
   avatarUrl = computed(
-    () => `${environment.apiBaseUrl}/users/${this.userId()}/profile-picture`,
+    () =>
+      `url('${environment.apiBaseUrl}/users/${this.userId()}/profile-picture')`,
   );
 }
