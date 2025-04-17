@@ -25,7 +25,7 @@ export class GroupDetailsState {
   @Action(groupDetailsActions.GetGroupDetails)
   getGroupDetails(
     context: StateContext<GroupDetailsStateModel>,
-    { groupId }: groupDetailsActions.GetGroupDetails
+    { groupId }: groupDetailsActions.GetGroupDetails,
   ): Observable<void> {
     context.setState(
       patch({
@@ -40,7 +40,9 @@ export class GroupDetailsState {
         );
       }),
       catchError((error: HttpErrorResponse) => {
-        return context.dispatch(new groupDetailsActions.GetGroupDetailsFailed(error));
+        return context.dispatch(
+          new groupDetailsActions.GetGroupDetailsFailed(error),
+        );
       }),
     );
   }

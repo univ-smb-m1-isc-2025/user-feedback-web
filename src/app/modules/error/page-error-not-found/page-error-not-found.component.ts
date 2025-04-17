@@ -9,7 +9,7 @@ import { UfRoute } from 'uf/shared/data-access/router';
   standalone: true,
   templateUrl: './page-error-not-found.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatAnchor,MatIcon , RouterLink],
+  imports: [MatAnchor, MatIcon, RouterLink],
 })
 export class PageErrorNotFoundComponent {
   readonly routeHome: UfRoute = ['/'];

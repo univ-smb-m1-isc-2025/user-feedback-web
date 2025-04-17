@@ -14,7 +14,7 @@ export class UserSignUpService {
     return this.#http.post<void>(`${this.#apiUrl}/auth/register`, {
       ...body,
       role: 'user',
-      email: 'user@mail.com'
+      email: 'user@mail.com',
     });
   }
 }

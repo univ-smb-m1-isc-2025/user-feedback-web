@@ -25,7 +25,9 @@ export class GroupNotJoinedListState {
   readonly #groupNotJoinedListService = inject(GroupNotJoinedListService);
 
   @Action(groupNotJoinedListActions.GetGroupNotJoinedList)
-  getGroupNotJoinedList(context: StateContext<GroupNotJoinedListStateModel>): Observable<void> {
+  getGroupNotJoinedList(
+    context: StateContext<GroupNotJoinedListStateModel>,
+  ): Observable<void> {
     context.setState(
       patch({
         apiStatus: 'loading',
@@ -39,7 +41,9 @@ export class GroupNotJoinedListState {
         );
       }),
       catchError((error: HttpErrorResponse) => {
-        return context.dispatch(new groupNotJoinedListActions.GetGroupNotJoinedListFailed(error));
+        return context.dispatch(
+          new groupNotJoinedListActions.GetGroupNotJoinedListFailed(error),
+        );
       }),
     );
   }
@@ -60,7 +64,9 @@ export class GroupNotJoinedListState {
   }
 
   @Action(groupNotJoinedListActions.GetGroupNotJoinedListFailed)
-  getGroupNotJoinedListFailed(context: StateContext<GroupNotJoinedListStateModel>): void {
+  getGroupNotJoinedListFailed(
+    context: StateContext<GroupNotJoinedListStateModel>,
+  ): void {
     context.setState(
       patch({
         apiStatus: 'failure',

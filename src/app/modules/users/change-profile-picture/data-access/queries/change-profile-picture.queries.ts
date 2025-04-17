@@ -18,4 +18,4 @@ export const changeProfilePictureLoading = createSelector(
 export const cacheBuster = createSelector(
   [changeProfilePictureSlice.cacheBuster],
   (cacheBuster) => cacheBuster,
-)
+);

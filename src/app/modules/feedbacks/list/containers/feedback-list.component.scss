@@ -5,12 +5,12 @@
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--neutral-200);
-  
+
   .header-left {
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    
+
     .back-btn {
       display: flex;
       align-items: center;
@@ -22,13 +22,13 @@
       color: var(--royal-blue);
       cursor: pointer;
       transition: all 0.2s ease;
-      
+
       &:hover {
         background-color: var(--royal-blue-100);
         transform: translateX(-2px);
       }
     }
-    
+
     h1 {
       font-size: 1.75rem;
       font-weight: 700;
@@ -36,7 +36,7 @@
       color: var(--neutral-800);
     }
   }
-  
+
   button {
     background-color: var(--royal-blue);
     color: white;
@@ -47,13 +47,13 @@
     gap: var(--space-2);
     font-weight: 500;
     transition: all 0.2s ease;
-    
+
     &:hover {
       background-color: var(--royal-blue-600);
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
     }
-    
+
     mat-icon {
       font-size: 18px;
       width: 18px;
@@ -67,14 +67,14 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  
+
   .empty-state {
     background-color: white;
     border-radius: var(--radius-lg);
     padding: var(--space-8);
     text-align: center;
     border: 1px dashed var(--neutral-300);
-    
+
     mat-icon {
       font-size: 4rem;
       height: 4rem;
@@ -82,18 +82,18 @@
       color: var(--neutral-400);
       margin-bottom: var(--space-4);
     }
-    
+
     h3 {
       font-size: 1.25rem;
       margin-bottom: var(--space-2);
       color: var(--neutral-700);
     }
-    
+
     p {
       color: var(--neutral-500);
       margin-bottom: var(--space-5);
     }
-    
+
     button[mat-flat-button] {
       margin: 0 auto;
       background-color: var(--royal-blue);
@@ -102,7 +102,7 @@
       align-items: center;
       gap: 8px;
       padding: 8px 16px;
-      
+
       mat-icon {
         font-size: 18px;
         height: 18px;
@@ -117,7 +117,7 @@
     animation: slideUp 0.3s ease;
     animation-fill-mode: both;
   }
-  
+
   @for $i from 0 through 10 {
     uf-feedback-list-item:nth-child(#{$i + 1}) {
       animation-delay: #{$i * 0.05}s;

@@ -20,7 +20,10 @@ import { LoaderComponent } from 'uf/shared/components/loader';
 
 import { groupCreateUiActions } from '../../create/data-access/state';
 import { groupDeleteActions } from '../../delete/state';
-import { groupNotJoined, groupNotJoinedLoading } from '../../not-joined-list/queries';
+import {
+  groupNotJoined,
+  groupNotJoinedLoading,
+} from '../../not-joined-list/queries';
 import { groupNotJoinedListActions } from '../../not-joined-list/state';
 import { groupList, groupListLoading } from '../data-access/queries';
 import { groupListActions } from '../data-access/state';
@@ -53,10 +56,15 @@ export class GroupListComponent implements OnInit {
   readonly groupListLoading = this.#store.selectSignal(groupListLoading);
 
   readonly groupNotJoinedListSignal = this.#store.selectSignal(groupNotJoined);
-  readonly groupNotJoinedLoading = this.#store.selectSignal(groupNotJoinedLoading);
+  readonly groupNotJoinedLoading = this.#store.selectSignal(
+    groupNotJoinedLoading,
+  );
 
   ngOnInit(): void {
-    this.#store.dispatch([new groupListActions.GetGroupList(), new groupNotJoinedListActions.GetGroupNotJoinedList()]);
+    this.#store.dispatch([
+      new groupListActions.GetGroupList(),
+      new groupNotJoinedListActions.GetGroupNotJoinedList(),
+    ]);
   }
 
   deleteGroup(groupId: number): void {

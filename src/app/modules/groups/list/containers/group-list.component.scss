@@ -30,7 +30,7 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-6);
-  
+
   h1 {
     font-size: 1.75rem;
     font-weight: 700;
@@ -39,12 +39,12 @@ header {
     display: flex;
     align-items: center;
     gap: var(--space-2);
-    
+
     mat-icon {
       color: var(--royal-blue);
     }
   }
-  
+
   button {
     background-color: var(--royal-blue);
     color: white;
@@ -55,13 +55,13 @@ header {
     gap: var(--space-2);
     font-weight: 500;
     transition: all 0.2s ease;
-    
+
     &:hover {
       background-color: var(--royal-blue-600);
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
     }
-    
+
     mat-icon {
       font-size: 18px;
       width: 18px;
@@ -78,7 +78,7 @@ header {
   margin-bottom: var(--space-4);
   position: relative;
   padding-left: var(--space-3);
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -96,7 +96,7 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-4);
-  
+
   .empty-state {
     grid-column: 1 / -1;
     background-color: white;
@@ -105,7 +105,7 @@ header {
     text-align: center;
     border: 1px dashed var(--neutral-300);
     margin-bottom: var(--space-6);
-    
+
     mat-icon {
       font-size: 4rem;
       height: 4rem;
@@ -113,21 +113,21 @@ header {
       color: var(--neutral-400);
       margin-bottom: var(--space-4);
     }
-    
+
     h3 {
       font-size: 1.25rem;
       margin-bottom: var(--space-2);
       color: var(--neutral-700);
     }
-    
+
     p {
       color: var(--neutral-500);
       margin-bottom: var(--space-5);
     }
-    
+
     button {
       margin: 0 auto;
-      
+
       mat-icon {
         font-size: 18px;
         width: 18px;
@@ -144,7 +144,7 @@ header {
       align-items: center;
       gap: 8px;
       padding: 8px 16px;
-      
+
       mat-icon {
         font-size: 18px;
         height: 18px;
@@ -158,36 +158,38 @@ header {
 
 mat-card {
   height: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   cursor: pointer;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background-color: white;
   border: 1px solid var(--neutral-200);
-  
+
   &:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
     border-color: var(--royal-blue-200);
   }
-  
+
   mat-card-header {
     padding: var(--space-3) var(--space-4) var(--space-2);
     position: relative;
-    
+
     mat-card-title {
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--neutral-800);
     }
-    
+
     button[mat-icon-button] {
       position: absolute;
       top: var(--space-1);
       right: var(--space-1);
     }
   }
-  
+
   mat-card-content {
     padding: var(--space-2) var(--space-4) var(--space-4);
     color: var(--neutral-600);

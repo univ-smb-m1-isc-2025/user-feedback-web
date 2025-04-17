@@ -59,16 +59,10 @@ export class FeedbackListItemComponent {
   readonly downVoteComment = output<number>();
 
   isCommentAreaOpen = false;
-  isCommentFormOpen = false;
   comment = '';
-
-  toggleCommentForm(): void {
-    this.isCommentFormOpen = !this.isCommentFormOpen;
-  }
 
   sendComment(): void {
     this.postComment.emit(this.comment);
-    this.isCommentFormOpen = false;
     this.comment = '';
   }
 

@@ -19,3 +19,7 @@ export class AuthenticateFailed {
 
   constructor(public readonly error: HttpErrorResponse) {}
 }
+
+export class AuthenticateResetState {
+  static readonly type = '[Authenticate] Reset State';
+}

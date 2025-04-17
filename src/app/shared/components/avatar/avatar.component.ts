@@ -1,8 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed, inject,
-  input
+  computed,
+  inject,
+  input,
 } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { environment } from 'uf/environments/environment';

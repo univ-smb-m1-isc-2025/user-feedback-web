@@ -12,12 +12,12 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Store } from '@ngxs/store';
 
 import { groupCreateLoading } from '../data-access/queries';
 import { groupCreateActions, groupCreateUiActions } from '../data-access/state';
-import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'uf-create-group-dialog',

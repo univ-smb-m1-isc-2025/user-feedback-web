@@ -6,7 +6,7 @@
   overflow: hidden;
   border: 1px solid var(--neutral-200);
   transition: all 0.2s ease;
-  
+
   &:hover {
     box-shadow: var(--shadow-lg);
     border-color: var(--royal-blue-200);
@@ -49,18 +49,20 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-4) var(--space-2);
-  
+
   uf-avatar {
     width: 48px;
     height: 48px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--royal-blue-50);
+    box-shadow:
+      0 0 0 2px white,
+      0 0 0 4px var(--royal-blue-50);
   }
-  
+
   .header-content {
     flex: 1;
-    
+
     .feedback-title {
       font-size: 1.25rem;
       font-weight: 600;
@@ -68,7 +70,7 @@
       margin: 0;
       margin-bottom: var(--space-1);
     }
-    
+
     .feedback-author {
       font-size: 0.85rem;
       color: var(--neutral-500);
@@ -78,7 +80,7 @@
 
 .card-body {
   padding: var(--space-2) var(--space-4) var(--space-4);
-  
+
   .feedback-content {
     color: var(--neutral-700);
     font-size: 1rem;
@@ -92,7 +94,7 @@
   padding: var(--space-2) var(--space-4);
   border-top: 1px solid var(--neutral-100);
   gap: var(--space-2);
-  
+
   button {
     display: flex;
     align-items: center;
@@ -101,36 +103,36 @@
     border-radius: var(--radius-md);
     padding: var(--space-1) var(--space-3);
     transition: all 0.2s ease;
-    
+
     mat-icon {
       font-size: 18px;
       width: 18px;
       height: 18px;
     }
-    
+
     &:hover {
       background-color: var(--neutral-100);
     }
-    
+
     &.liked {
       color: var(--royal-blue);
-      
+
       mat-icon {
         color: var(--royal-blue);
       }
     }
-    
+
     &.disliked {
       color: var(--error);
-      
+
       mat-icon {
         color: var(--error);
       }
     }
-    
+
     &.has-count {
       position: relative;
-      
+
       .count {
         font-size: 0.85rem;
         margin-left: var(--space-1);
@@ -208,17 +210,17 @@
   border-top: 1px solid var(--neutral-200);
   display: flex;
   gap: var(--space-3);
-  
+
   mat-form-field {
     flex: 1;
   }
-  
+
   button {
     align-self: flex-start;
     margin-top: 8px;
     background-color: var(--royal-blue);
     color: white;
-    
+
     &:hover {
       background-color: var(--royal-blue-600);
     }
@@ -229,7 +231,7 @@
   padding: var(--space-4);
   background-color: var(--neutral-50);
   border-top: 1px solid var(--neutral-200);
-  
+
   .thread-header {
     font-size: 0.9rem;
     font-weight: 600;
@@ -238,52 +240,52 @@
     display: flex;
     align-items: center;
     gap: var(--space-1);
-    
+
     mat-icon {
       font-size: 18px;
       width: 18px;
       height: 18px;
     }
   }
-  
+
   .comment-item {
     display: flex;
     gap: var(--space-3);
     padding: var(--space-3) 0;
     border-bottom: 1px solid var(--neutral-100);
-    
+
     &:last-child {
       border-bottom: none;
     }
-    
+
     uf-avatar {
       width: 36px;
       height: 36px;
       border-radius: 50%;
       overflow: hidden;
     }
-    
+
     .comment-content {
       flex: 1;
-      
+
       .comment-author {
         font-weight: 600;
         color: var(--neutral-700);
         font-size: 0.9rem;
         margin-bottom: var(--space-1);
       }
-      
+
       .comment-text {
         color: var(--neutral-700);
         font-size: 0.95rem;
         line-height: 1.5;
         margin-bottom: var(--space-2);
       }
-      
+
       .comment-actions {
         display: flex;
         gap: var(--space-3);
-        
+
         button {
           display: flex;
           align-items: center;
@@ -292,24 +294,24 @@
           font-size: 0.8rem;
           padding: var(--space-1) var(--space-2);
           border-radius: var(--radius-md);
-          
+
           mat-icon {
             font-size: 16px;
             width: 16px;
             height: 16px;
           }
-          
+
           &.liked {
             color: var(--royal-blue);
-            
+
             mat-icon {
               color: var(--royal-blue);
             }
           }
-          
+
           &.disliked {
             color: var(--error);
-            
+
             mat-icon {
               color: var(--error);
             }

@@ -3,7 +3,11 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--royal-blue-50) 0%, var(--royal-blue-100) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--royal-blue-50) 0%,
+    var(--royal-blue-100) 100%
+  );
 }
 
 .auth-card {
@@ -20,14 +24,14 @@
 .auth-header {
   text-align: center;
   margin-bottom: var(--space-6);
-  
+
   h2 {
     font-size: 2rem;
     font-weight: 700;
     color: var(--royal-blue);
     margin-bottom: var(--space-1);
   }
-  
+
   .subtitle {
     color: var(--neutral-600);
     font-size: 1rem;
@@ -66,7 +70,7 @@ a[mat-button] {
   color: var(--royal-blue);
   font-weight: 500;
   text-decoration: underline;
-  
+
   &:hover {
     color: var(--royal-blue-700);
     text-decoration: underline;
@@ -79,12 +83,12 @@ button[mat-flat-button] {
   font-weight: 500;
   padding: var(--space-2) var(--space-6);
   border-radius: var(--radius-md);
-  
+
   &:hover:not(:disabled) {
     background-color: var(--royal-blue-600);
     box-shadow: var(--shadow-md);
   }
-  
+
   &:disabled {
     opacity: 0.7;
   }
