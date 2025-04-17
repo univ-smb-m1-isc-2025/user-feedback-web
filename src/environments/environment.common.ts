@@ -1,3 +1,3 @@
 export const environment = {
-  apiBaseUrl: '/api', // 'https://api.user-feedback.oups.net/api', //
+  apiBaseUrl: 'https://api.user-feedback.oups.net/api', // '/api', // 
 };
