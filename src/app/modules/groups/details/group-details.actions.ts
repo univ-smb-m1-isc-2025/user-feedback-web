@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { User } from 'uf/core/services/auth/state';
 
 import { Group } from '../list/data-access/state';
 
@@ -34,6 +35,24 @@ export class GetSubgroupsSuccess {
 
 export class GetSubgroupsFailed {
   static readonly type = '[Groups] Get Subgroups Failed';
+
+  constructor(public readonly error: HttpErrorResponse) {}
+}
+
+export class GetUsers {
+  static readonly type = '[Groups] Get Users';
+
+  constructor(public readonly groupId: number) {}
+}
+
+export class GetUsersSuccess {
+  static readonly type = '[Groups] Get Users Success';
+
+  constructor(public readonly apiResult: User[]) {}
+}
+
+export class GetUsersFailed {
+  static readonly type = '[Groups] Get Users Failed';
 
   constructor(public readonly error: HttpErrorResponse) {}
 }

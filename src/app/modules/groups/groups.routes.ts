@@ -16,6 +16,8 @@ import {
   FeedbackUpdateUiState,
 } from 'uf/modules/feedbacks/update/data-access/state';
 
+import { GroupUserListUiState } from 'uf/modules/groups/user-list/data-access';
+
 import {
   GroupCreateState,
   GroupCreateUiState,
@@ -65,6 +67,7 @@ export const groupRoutes: Routes = [
             FeedbackUpdateUiState,
             FeedbackDeleteState,
             FeedbackDeleteUiState,
+            GroupUserListUiState,
           ]),
         ],
       },

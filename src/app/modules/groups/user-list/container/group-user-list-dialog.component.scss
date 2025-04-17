@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+mat-dialog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.dialog-description {
+  margin-bottom: var(--space-5);
+  color: var(--neutral-600);
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 400px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+}
+
+.list-item {
+  display: flex;
+  gap: 25px;
+
+  uf-avatar {
+    width: 40px;
+    height: 40px;
+  }
+}

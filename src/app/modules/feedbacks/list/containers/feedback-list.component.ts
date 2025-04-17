@@ -22,6 +22,7 @@ import {
   groupDetailsActions,
   subgroups,
 } from 'uf/modules/groups/details';
+import { groupUserListUiActions } from 'uf/modules/groups/user-list/data-access';
 import { LoaderComponent } from 'uf/shared/components/loader';
 import { groupId } from 'uf/shared/data-access/router';
 
@@ -139,5 +140,18 @@ export class FeedbackListComponent implements OnInit {
     this.#store.dispatch(
       new groupCreateUiActions.OpenCreateGroupDialog(this.groupDetails()?.id),
     );
+  }
+
+  openUserList(): void {
+    const details = this.groupDetails();
+
+    if (details) {
+      this.#store.dispatch(
+        new groupUserListUiActions.OpenUserListGroupDialog(
+          details,
+          details.name,
+        ),
+      );
+    }
   }
 }

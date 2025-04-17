@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Membre de {{ data.name }}</h2>
+
+<mat-dialog-content>
+  <mat-list>
+    @for (user of data.group.users; track user) {
+      <mat-list-item>
+        <div class="list-item">
+          <uf-avatar [userId]="user.id" />
+          <p>{{ user.username }}</p>
+        </div>
+      </mat-list-item>
+      @if (!$last) {
+        <mat-divider></mat-divider>
+      }
+    }
+  </mat-list>
+</mat-dialog-content>

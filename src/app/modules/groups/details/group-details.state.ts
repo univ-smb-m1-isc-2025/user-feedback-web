@@ -4,6 +4,8 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { catchError, Observable, switchMap } from 'rxjs';
 
+import { User } from 'uf/core/services/auth/state';
+
 import * as groupDetailsActions from './group-details.actions';
 import { GroupDetailsStateModel } from './group-details.models';
 import { GroupDetailsService } from './group-details.service';
@@ -59,9 +61,13 @@ export class GroupDetailsState {
           ...apiResult,
           subgroups: [],
           subgroupsLoading: undefined,
+          users: [],
+          usersLoading: undefined,
         },
       }),
     );
+
+    context.dispatch(new groupDetailsActions.GetUsers(apiResult.id));
 
     if (apiResult.subGroupCount > 0) {
       context.dispatch(new groupDetailsActions.GetSubgroups(apiResult.id));
@@ -125,6 +131,57 @@ export class GroupDetailsState {
       patch({
         apiResult: patch({
           subgroupsLoading: 'failure',
+        }),
+      }),
+    );
+  }
+
+  @Action(groupDetailsActions.GetUsers)
+  getUsers(
+    context: StateContext<GroupDetailsStateModel>,
+    { groupId }: groupDetailsActions.GetUsers,
+  ): Observable<void> {
+    context.setState(
+      patch({
+        apiResult: patch({
+          usersLoading: 'loading',
+        }),
+      }),
+    );
+
+    return this.#groupDetailsService.getUsers(groupId).pipe(
+      switchMap((apiResult: User[]) => {
+        return context.dispatch(
+          new groupDetailsActions.GetUsersSuccess(apiResult),
+        );
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return context.dispatch(new groupDetailsActions.GetUsersFailed(error));
+      }),
+    );
+  }
+
+  @Action(groupDetailsActions.GetUsersSuccess)
+  getUsersSuccess(
+    context: StateContext<GroupDetailsStateModel>,
+    { apiResult }: groupDetailsActions.GetUsersSuccess,
+  ): void {
+    context.setState(
+      patch({
+        apiResult: patch({
+          usersLoading: 'success',
+          users: apiResult,
+        }),
+      }),
+    );
+  }
+
+  @Action(groupDetailsActions.GetUsersFailed)
+  getUsersFailed(context: StateContext<GroupDetailsStateModel>): void {
+    context.setState(
+      patch({
+        apiResult: patch({
+          usersLoading: 'failure',
         }),
       }),
     );

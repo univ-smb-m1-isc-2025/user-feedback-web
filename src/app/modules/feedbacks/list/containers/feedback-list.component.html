@@ -5,9 +5,12 @@
     </div>
     <h1>{{ groupDetails()?.name }}</h1>
   </div>
-  <button mat-flat-button (click)="addFeedback()">
+  <button class="add-button" mat-flat-button (click)="addFeedback()">
     <mat-icon>add</mat-icon>
     Ajouter un feedback
+  </button>
+  <button mat-icon-button (click)="openUserList()">
+    <mat-icon>group</mat-icon>
   </button>
 </div>
 

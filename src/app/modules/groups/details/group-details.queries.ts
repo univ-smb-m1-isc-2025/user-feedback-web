@@ -20,3 +20,8 @@ export const subgroups = createSelector(
   [groupDetails],
   (groupDetails) => groupDetails?.subgroups ?? [],
 );
+
+export const groupUsers = createSelector(
+  [groupDetails],
+  (groupDetails) => groupDetails?.users ?? [],
+);
