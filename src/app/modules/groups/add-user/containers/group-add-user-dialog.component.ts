@@ -95,4 +95,8 @@ export class GroupAddUserDialogComponent {
   onCancel(): void {
     this.#store.dispatch(new groupAddUserUiActions.CloseAddUserDialog());
   }
+
+  onClose(): void {
+    this.#store.dispatch(new groupAddUserUiActions.CloseAddUserDialog());
+  }
 }

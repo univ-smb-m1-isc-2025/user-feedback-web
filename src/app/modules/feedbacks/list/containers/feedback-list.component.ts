@@ -70,9 +70,10 @@ export class FeedbackListComponent implements OnInit {
   navigateToGroupList(): void {
     const parentGroupId = this.groupDetails()?.parentGroupId;
     if (parentGroupId) {
-      this.#store.dispatch(
+      this.#store.dispatch([
         new groupDetailsActions.GetGroupDetails(parentGroupId),
-      );
+        new feedbackListActions.GetFeedbackList(parentGroupId),
+      ]);
       this.#router.navigate([...this.routeGroupList, parentGroupId]);
     } else {
       this.#router.navigate(this.routeGroupList);
@@ -133,7 +134,10 @@ export class FeedbackListComponent implements OnInit {
   }
 
   onClickGroup(groupId: number): void {
-    this.#store.dispatch(new groupDetailsActions.GetGroupDetails(groupId));
+    this.#store.dispatch([
+      new groupDetailsActions.GetGroupDetails(groupId),
+      new feedbackListActions.GetFeedbackList(groupId),
+    ]);
     this.#router.navigate(['/', 'groups', groupId]);
   }
 

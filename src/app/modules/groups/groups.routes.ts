@@ -11,6 +11,7 @@ import {
 } from 'uf/modules/feedbacks/delete/data-access/state';
 import { LikeState } from 'uf/modules/feedbacks/like';
 import { FeedbackListState } from 'uf/modules/feedbacks/list/data-access/state';
+
 import {
   FeedbackUpdateState,
   FeedbackUpdateUiState,
@@ -18,6 +19,10 @@ import {
 
 import { GroupUserListUiState } from 'uf/modules/groups/user-list/data-access';
 
+import {
+  GroupAddUserUiState,
+  GroupAddUserState,
+} from './add-user/data-access/state';
 import {
   GroupCreateState,
   GroupCreateUiState,
@@ -27,12 +32,13 @@ import { GroupDetailsState } from './details';
 import { GroupLayoutComponent } from './layout';
 import { GroupListState } from './list/data-access/state';
 import { GroupNotJoinedListState } from './not-joined-list/state';
+import { GroupUserRemoveState } from './user-list/data-access/group-user-remove.state';
 
 export const groupRoutes: Routes = [
   {
     path: '',
     component: GroupLayoutComponent,
-    providers: [provideStates([GroupDetailsState])],
+    providers: [provideStates([GroupDetailsState, GroupUserRemoveState])],
     children: [
       {
         path: '',
@@ -68,6 +74,8 @@ export const groupRoutes: Routes = [
             FeedbackDeleteState,
             FeedbackDeleteUiState,
             GroupUserListUiState,
+            GroupAddUserUiState,
+            GroupAddUserState,
           ]),
         ],
       },

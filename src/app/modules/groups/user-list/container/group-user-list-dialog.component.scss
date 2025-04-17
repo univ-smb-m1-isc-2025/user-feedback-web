@@ -24,19 +24,19 @@ mat-dialog-content {
   min-width: 400px;
   max-height: 60vh !important;
   padding: var(--space-4) 0 !important;
-  
+
   mat-list {
     padding: 0;
     max-height: 350px;
     overflow-y: auto;
   }
-  
+
   mat-list-item {
     margin-bottom: var(--space-2);
     height: auto !important;
     border-radius: var(--radius-md);
     transition: background-color 0.2s ease;
-    
+
     &:hover {
       background-color: var(--neutral-50);
     }
@@ -50,7 +50,7 @@ mat-dialog-content {
     min-height: 100px;
     resize: vertical;
   }
-  
+
   mat-divider {
     margin: var(--space-2) 0;
   }
@@ -59,9 +59,16 @@ mat-dialog-content {
 .list-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-3);
   padding: var(--space-2) var(--space-1);
   width: 100%;
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
 
   uf-avatar {
     width: 42px;
@@ -72,12 +79,33 @@ mat-dialog-content {
     overflow: hidden;
     display: block;
   }
-  
+
   p {
     margin: 0;
     font-weight: 500;
     color: var(--neutral-800);
     font-size: 1rem;
+  }
+
+  .remove-btn {
+    min-width: auto;
+    padding: 0 8px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    color: var(--error-600);
+    background-color: transparent;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: var(--error-50);
+      color: var(--error-700);
+    }
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
@@ -93,12 +121,12 @@ mat-dialog-actions {
     min-width: 100px;
     font-weight: 500;
     border-radius: var(--radius-md);
-    
+
     &.close-btn {
       background-color: white;
       color: var(--neutral-700);
       border: 1px solid var(--neutral-300);
-      
+
       &:hover {
         background-color: var(--neutral-50);
       }
@@ -113,7 +141,7 @@ mat-dialog-actions {
   align-items: center;
   justify-content: center;
   padding: var(--space-8) 0;
-  
+
   mat-icon {
     font-size: 48px;
     height: 48px;
@@ -121,7 +149,7 @@ mat-dialog-actions {
     color: var(--neutral-400);
     margin-bottom: var(--space-4);
   }
-  
+
   p {
     color: var(--neutral-600);
     font-size: 1rem;
