@@ -6,11 +6,11 @@
     <h1>{{ groupDetails()?.name }}</h1>
   </div>
   <div class="header-actions">
-    <button mat-flat-button class="add-member-btn" (click)="addMember()">
+    <button mat-flat-button class="add-member-btn header-action" (click)="addMember()">
       <mat-icon>person_add</mat-icon>
       Ajouter des membres
     </button>
-    <button mat-flat-button (click)="addFeedback()">
+    <button class="header-action" mat-flat-button (click)="addFeedback()">
       <mat-icon>add</mat-icon>
       Ajouter un feedback
     </button>
