@@ -2,16 +2,19 @@
   display: block;
 }
 
-mat-dialog-title {
+h2[mat-dialog-title] {
   font-size: 1.5rem;
   font-weight: 600;
-  color: white;
+  color: var(--neutral-800);
   margin: 0;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--neutral-200);
 }
 
 .dialog-description {
   margin-bottom: var(--space-5);
   color: var(--neutral-600);
+  font-size: 0.95rem;
 }
 
 mat-dialog-content {
@@ -19,6 +22,25 @@ mat-dialog-content {
   flex-direction: column;
   gap: var(--space-4);
   min-width: 400px;
+  max-height: 60vh !important;
+  padding: var(--space-4) 0 !important;
+  
+  mat-list {
+    padding: 0;
+    max-height: 350px;
+    overflow-y: auto;
+  }
+  
+  mat-list-item {
+    margin-bottom: var(--space-2);
+    height: auto !important;
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: var(--neutral-50);
+    }
+  }
 
   mat-form-field {
     width: 100%;
@@ -28,14 +50,81 @@ mat-dialog-content {
     min-height: 100px;
     resize: vertical;
   }
+  
+  mat-divider {
+    margin: var(--space-2) 0;
+  }
 }
 
 .list-item {
   display: flex;
-  gap: 25px;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-1);
+  width: 100%;
 
   uf-avatar {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-xs);
+    border: 2px solid white;
+    overflow: hidden;
+    display: block;
+  }
+  
+  p {
+    margin: 0;
+    font-weight: 500;
+    color: var(--neutral-800);
+    font-size: 1rem;
+  }
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  gap: var(--space-3);
+  border-top: 1px solid var(--neutral-200);
+  margin-top: var(--space-2);
+
+  button {
+    min-width: 100px;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    
+    &.close-btn {
+      background-color: white;
+      color: var(--neutral-700);
+      border: 1px solid var(--neutral-300);
+      
+      &:hover {
+        background-color: var(--neutral-50);
+      }
+    }
+  }
+}
+
+// État vide
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) 0;
+  
+  mat-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+    color: var(--neutral-400);
+    margin-bottom: var(--space-4);
+  }
+  
+  p {
+    color: var(--neutral-600);
+    font-size: 1rem;
+    margin: 0;
   }
 }

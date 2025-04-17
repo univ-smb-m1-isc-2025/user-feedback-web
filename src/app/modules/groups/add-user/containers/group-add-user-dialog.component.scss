@@ -7,21 +7,17 @@
   }
 }
 
-.dialog-header {
-  background-color: var(--royal-blue);
-  padding: var(--space-4) var(--space-4) var(--space-4);
-  margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) var(--space-4);
-  text-align: center;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+mat-dialog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
 
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-    margin: 0;
-    padding: 0;
-  }
+.dialog-description {
+  margin-bottom: var(--space-5);
+  color: var(--neutral-600);
+  font-size: 0.95rem;
 }
 
 mat-dialog-content {
