@@ -37,28 +37,41 @@
     }
   }
 
-  button {
-    background-color: var(--royal-blue);
-    color: white;
-    border-radius: var(--radius-md);
-    padding: var(--space-2) var(--space-4);
+  .header-actions {
     display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-weight: 500;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: var(--royal-blue-600);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+    gap: var(--space-3);
+    
+    button {
+      background-color: var(--royal-blue);
+      color: white;
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-weight: 500;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: var(--royal-blue-600);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+      }
     }
-
-    mat-icon {
-      font-size: 18px;
-      width: 18px;
-      height: 18px;
-      line-height: 18px;
+    
+    .add-member-btn {
+      background-color: var(--royal-blue-700);
+      
+      &:hover {
+        background-color: var(--royal-blue-800);
+      }
     }
   }
 }

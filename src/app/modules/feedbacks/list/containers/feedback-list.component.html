@@ -5,10 +5,16 @@
     </div>
     <h1>{{ groupDetails()?.name }}</h1>
   </div>
-  <button mat-flat-button (click)="addFeedback()">
-    <mat-icon>add</mat-icon>
-    Ajouter un feedback
-  </button>
+  <div class="header-actions">
+    <button mat-flat-button class="add-member-btn" (click)="addMember()">
+      <mat-icon>person_add</mat-icon>
+      Ajouter des membres
+    </button>
+    <button mat-flat-button (click)="addFeedback()">
+      <mat-icon>add</mat-icon>
+      Ajouter un feedback
+    </button>
+  </div>
 </div>
 
 @if (loading()) {
