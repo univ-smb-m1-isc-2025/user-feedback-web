@@ -5,13 +5,19 @@
     </div>
     <h1>{{ groupDetails()?.name }}</h1>
   </div>
-  <button class="add-button" mat-flat-button (click)="addFeedback()">
-    <mat-icon>add</mat-icon>
-    Ajouter un feedback
-  </button>
-  <button mat-icon-button (click)="openUserList()">
-    <mat-icon>group</mat-icon>
-  </button>
+  <div class="header-actions">
+    <button mat-flat-button class="add-member-btn" (click)="addMember()">
+      <mat-icon>person_add</mat-icon>
+      Ajouter des membres
+    </button>
+    <button mat-flat-button (click)="addFeedback()">
+      <mat-icon>add</mat-icon>
+      Ajouter un feedback
+    </button>
+    <button mat-icon-button (click)="openUserList()">
+      <mat-icon>group</mat-icon>
+    </button>
+  </div>
 </div>
 
 @if (groupDetails()?.subgroupsLoading === 'loading') {

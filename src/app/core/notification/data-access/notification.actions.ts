@@ -1,11 +1,13 @@
-export class NotifySuccess {
-  static readonly type = '[Notification] Notify Success';
+import { HttpErrorResponse } from '@angular/common/http';
 
-  constructor(public message: string) {}
+export class NotifySuccess {
+  static readonly type = '[Notification] Success';
+
+  constructor(public readonly message: string) {}
 }
 
 export class NotifyError {
-  static readonly type = '[Notification] Notify Error';
+  static readonly type = '[Notification] Error';
 
-  constructor(public message: string) {}
+  constructor(public readonly message: string, public readonly error?: HttpErrorResponse) {}
 }

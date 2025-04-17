@@ -34,6 +34,7 @@ import { feedbackUpdateUiActions } from '../../update/data-access/state';
 import { feedbackList, feedbackListLoading } from '../data-access/queries';
 import { Feedback, feedbackListActions } from '../data-access/state';
 import { FeedbackListItemComponent } from '../ui/feedback-list-item';
+import { groupAddUserUiActions } from 'uf/modules/groups/add-user/data-access/state';
 
 @Component({
   selector: 'uf-feedback-list',
@@ -153,5 +154,10 @@ export class FeedbackListComponent implements OnInit {
         ),
       );
     }
+  }
+
+  addMember(): void {
+    const groupIdValue = this.#store.selectSnapshot(groupId);
+    this.#store.dispatch(new groupAddUserUiActions.OpenAddUserDialog(groupIdValue));
   }
 }

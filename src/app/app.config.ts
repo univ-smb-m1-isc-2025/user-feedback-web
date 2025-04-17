@@ -14,6 +14,7 @@ import { authInterceptor } from 'uf/core/http-interceptor';
 import { NotificationState } from 'uf/core/notification/data-access';
 import { AuthState } from 'uf/core/services/auth/state';
 import { environment } from 'uf/environments/environment';
+import { GroupAddUserState, GroupAddUserUiState } from './modules/groups/add-user/data-access/state';
 
 import { routes } from './app.routes';
 import { API_URL } from './shared/data-access';
@@ -23,7 +24,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(withInterceptors([authInterceptor])),
-    provideStore([AuthState, NotificationState]),
+    provideStore([AuthState, NotificationState, GroupAddUserState, GroupAddUserUiState]),
     provideRouter(routes),
     withNgxsRouterPlugin(),
     withNgxsReduxDevtoolsPlugin({
