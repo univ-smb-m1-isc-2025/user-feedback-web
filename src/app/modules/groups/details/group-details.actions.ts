@@ -19,3 +19,7 @@ export class GetGroupDetailsFailed {
 
   constructor(public readonly error: HttpErrorResponse) {}
 }
+
+export class GroupDetailsResetState {
+  static readonly type = '[Groups] Group Details Reset State';
+}

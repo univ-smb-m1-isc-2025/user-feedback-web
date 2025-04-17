@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -20,10 +21,7 @@ import { LoaderComponent } from 'uf/shared/components/loader';
 
 import { groupCreateUiActions } from '../../create/data-access/state';
 import { groupDeleteActions } from '../../delete/state';
-import {
-  groupNotJoined,
-  groupNotJoinedLoading,
-} from '../../not-joined-list/queries';
+import { groupNotJoined } from '../../not-joined-list/queries';
 import { groupNotJoinedListActions } from '../../not-joined-list/state';
 import { groupList, groupListLoading } from '../data-access/queries';
 import { groupListActions } from '../data-access/state';
@@ -48,7 +46,7 @@ import { groupListActions } from '../data-access/state';
     MatButton,
   ],
 })
-export class GroupListComponent implements OnInit {
+export class GroupListComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   readonly #router = inject(Router);
 
@@ -56,15 +54,16 @@ export class GroupListComponent implements OnInit {
   readonly groupListLoading = this.#store.selectSignal(groupListLoading);
 
   readonly groupNotJoinedListSignal = this.#store.selectSignal(groupNotJoined);
-  readonly groupNotJoinedLoading = this.#store.selectSignal(
-    groupNotJoinedLoading,
-  );
 
   ngOnInit(): void {
     this.#store.dispatch([
       new groupListActions.GetGroupList(),
       new groupNotJoinedListActions.GetGroupNotJoinedList(),
     ]);
+  }
+
+  ngOnDestroy(): void {
+    this.#store.dispatch(new groupDetailsActions.GroupDetailsResetState());
   }
 
   deleteGroup(groupId: number): void {

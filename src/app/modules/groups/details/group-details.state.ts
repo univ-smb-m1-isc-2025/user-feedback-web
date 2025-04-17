@@ -68,4 +68,11 @@ export class GroupDetailsState {
       }),
     );
   }
+
+  @Action(groupDetailsActions.GroupDetailsResetState)
+  groupDetailsResetState(
+    context: StateContext<groupDetailsActions.GroupDetailsResetState>,
+  ): void {
+    context.setState(initialState);
+  }
 }
