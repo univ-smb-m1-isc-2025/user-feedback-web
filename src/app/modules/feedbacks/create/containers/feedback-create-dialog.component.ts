@@ -12,6 +12,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Store } from '@ngxs/store';
 import { groupId } from 'uf/shared/data-access/router';
@@ -37,6 +38,7 @@ import {
     MatInput,
     MatButton,
     MatDialogActions,
+    MatIcon,
   ],
 })
 export class FeedbackCreateDialogComponent {

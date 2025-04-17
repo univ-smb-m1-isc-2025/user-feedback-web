@@ -1,9 +1,14 @@
 import { createPropertySelectors, createSelector } from '@ngxs/store';
 
-import { GroupNotJoinedListState, GroupNotJoinedListStateModel } from '../state';
+import {
+  GroupNotJoinedListState,
+  GroupNotJoinedListStateModel,
+} from '../state';
 
 export const groupNotJoinedListSlice =
-  createPropertySelectors<GroupNotJoinedListStateModel>(GroupNotJoinedListState);
+  createPropertySelectors<GroupNotJoinedListStateModel>(
+    GroupNotJoinedListState,
+  );
 
 export const groupNotJoinedLoading = createSelector(
   [groupNotJoinedListSlice.apiStatus],

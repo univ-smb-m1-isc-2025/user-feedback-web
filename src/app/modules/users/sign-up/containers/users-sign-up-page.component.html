@@ -1,21 +1,22 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
-  <h2>Sign up</h2>
-  <mat-form-field>
-    <mat-label>Username</mat-label>
+  <h2>Inscription</h2>
+  <p class="subtitle">Créez votre compte pour commencer</p>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nom d'utilisateur</mat-label>
+    <mat-icon matPrefix class="input-icon">person</mat-icon>
     <input matInput formControlName="username" type="text" />
   </mat-form-field>
-  <mat-form-field>
-    <mat-label>Password</mat-label>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Mot de passe</mat-label>
+    <mat-icon matPrefix class="input-icon">lock</mat-icon>
     <input matInput formControlName="password" type="password" />
   </mat-form-field>
+
   <mat-action-row>
     <a mat-button [routerLink]="routeUsersSignInSignal()">Déjà un compte ?</a>
-    <button
-      mat-flat-button
-      [disabled]="signUpForm.invalid"
-      type="submit"
-      color="accent"
-    >
+    <button mat-flat-button [disabled]="signUpForm.invalid" type="submit">
       Créer un compte
     </button>
   </mat-action-row>

@@ -67,4 +67,9 @@ export class AuthState {
 
     context.dispatch(new NotifyError('La connexion a échoué'));
   }
+
+  @Action(authActions.AuthenticateResetState)
+  authenticateResetState(context: StateContext<AuthStateModel>): void {
+    context.setState(initialState);
+  }
 }

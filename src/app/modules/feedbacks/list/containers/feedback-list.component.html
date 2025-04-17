@@ -1,13 +1,20 @@
-<header>
-  <h1>
-    <mat-icon (click)="navigateToGroupList()">arrow_back_ios</mat-icon>
-    {{ groupDetails()?.name }}
-  </h1>
-  <button mat-flat-button (click)="addFeedback()">Ajouter un feedback</button>
-</header>
+<div class="page-header">
+  <div class="header-left">
+    <div class="back-btn" (click)="navigateToGroupList()">
+      <mat-icon>arrow_back</mat-icon>
+    </div>
+    <h1>{{ groupDetails()?.name }}</h1>
+  </div>
+  <button mat-flat-button (click)="addFeedback()">
+    <mat-icon>add</mat-icon>
+    Ajouter un feedback
+  </button>
+</div>
 
 @if (loading()) {
-  <uf-loader />
+  <div class="loader-container">
+    <uf-loader [diameter]="50" />
+  </div>
 } @else {
   <div class="feedbacks">
     @for (feedback of feedbackListSignal(); track feedback.id) {
@@ -21,7 +28,15 @@
         (downVoteFeedback)="downVoteFeedback($event)"
       />
     } @empty {
-      Y a point de feedback ici 🤷‍♂️
+      <div class="empty-state">
+        <mat-icon>comment_bank</mat-icon>
+        <h3>Aucun feedback pour le moment</h3>
+        <p>Soyez le premier à partager votre avis dans ce groupe</p>
+        <button mat-flat-button color="primary" (click)="addFeedback()">
+          <mat-icon>add</mat-icon>
+          Ajouter un feedback
+        </button>
+      </div>
     }
   </div>
 }

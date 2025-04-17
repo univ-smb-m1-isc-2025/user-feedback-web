@@ -12,6 +12,7 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Store } from '@ngxs/store';
 
@@ -25,7 +26,6 @@ import { groupCreateActions, groupCreateUiActions } from '../data-access/state';
   styleUrl: './group-create-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    MatDialogTitle,
     MatDialogContent,
     ReactiveFormsModule,
     MatFormField,
@@ -33,6 +33,8 @@ import { groupCreateActions, groupCreateUiActions } from '../data-access/state';
     MatInput,
     MatButton,
     MatDialogActions,
+    MatIcon,
+    MatDialogTitle,
   ],
 })
 export class GroupCreateDialogComponent {

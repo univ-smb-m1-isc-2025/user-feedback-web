@@ -1,3 +1,56 @@
+:host {
+  display: block;
+}
+
+mat-dialog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.dialog-description {
+  margin-bottom: var(--space-5);
+  color: var(--neutral-600);
+  font-size: 0.95rem;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 400px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-4);
+  gap: var(--space-3);
+
+  .cancel-btn {
+    color: var(--neutral-700);
+  }
+
+  .create-btn {
+    background-color: var(--royal-blue);
+    color: white;
+
+    &:disabled {
+      opacity: 0.7;
+    }
+  }
+}
+
 .feedback-form-content {
   display: flex;
   flex-direction: column;

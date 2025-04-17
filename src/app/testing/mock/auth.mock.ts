@@ -15,7 +15,7 @@ export const authApiResultMock: AuthApiResult = {
     email: 'guigui@gmail.com',
     feedbackCount: 1,
     groupCount: 0,
-  }
+  },
 };
 
 export const authStateMock: AuthStateModel = {
