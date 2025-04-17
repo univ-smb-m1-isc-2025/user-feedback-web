@@ -1,10 +1,12 @@
 import { inject, Injectable, NgZone } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Action, State } from '@ngxs/store';
+
+import { groupUserListUiActions } from 'uf/modules/groups/user-list/data-access';
 
 import * as groupAddUserUiActions from './group-add-user-ui.actions';
 import * as groupAddUserActions from './group-add-user.actions';
-import { GroupAddUserDialogComponent } from '../../containers/group-add-user-dialog.component';
+import { GroupAddUserDialogComponent } from '../../containers';
 
 @State<never>({
   name: 'groupAddUserUi',
@@ -14,29 +16,25 @@ export class GroupAddUserUiState {
   readonly #dialog = inject(MatDialog);
   readonly #ngZone = inject(NgZone);
 
+  #dialogRef!: MatDialogRef<GroupAddUserDialogComponent>;
+
   @Action(groupAddUserUiActions.OpenAddUserDialog)
   openAddUserDialog({}, action: groupAddUserUiActions.OpenAddUserDialog): void {
     this.#ngZone.run(() => {
-      const dialogRef = this.#dialog.open(GroupAddUserDialogComponent, {
+      this.#dialogRef = this.#dialog.open(GroupAddUserDialogComponent, {
         width: '500px',
         data: { groupId: action.groupId },
       });
-
-      // Removed code that reopens an empty dialog after closing
     });
   }
 
-  @Action(groupAddUserUiActions.CloseAddUserDialog)
-  closeAddUserDialog(): void {
+  @Action([
+    groupUserListUiActions.CloseUserListGroupDialog,
+    groupAddUserActions.AddUserToGroupSuccess,
+  ])
+  closeCreateGroupDialog(): void {
     this.#ngZone.run(() => {
-      this.#dialog.closeAll();
-    });
-  }
-
-  @Action(groupAddUserActions.AddUserToGroupSuccess)
-  closeDialogOnSuccess(): void {
-    this.#ngZone.run(() => {
-      this.#dialog.closeAll();
+      void this.#dialogRef.close();
     });
   }
 }

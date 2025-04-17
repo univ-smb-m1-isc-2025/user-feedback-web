@@ -9,5 +9,8 @@ export class NotifySuccess {
 export class NotifyError {
   static readonly type = '[Notification] Error';
 
-  constructor(public readonly message: string, public readonly error?: HttpErrorResponse) {}
+  constructor(
+    public readonly message: string,
+    public readonly error?: HttpErrorResponse,
+  ) {}
 }

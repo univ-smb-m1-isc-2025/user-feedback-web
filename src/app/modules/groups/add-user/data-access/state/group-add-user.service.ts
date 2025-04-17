@@ -16,15 +16,18 @@ export class GroupAddUserService {
     const params = new HttpParams()
       .set('search', searchTerm)
       .set('groupId', groupId.toString());
-      
+
     return this.#http.get<User[]>(`${this.#apiUrl}/users/search`, { params });
   }
 
-  addUserToGroup(groupId: number, userId: number): Observable<AddUserToGroupResponse> {
+  addUserToGroup(
+    groupId: number,
+    userId: number,
+  ): Observable<AddUserToGroupResponse> {
     return this.#http.post<AddUserToGroupResponse>(
       `${this.#apiUrl}/groups/${groupId}/users`,
       {},
-      { params: new HttpParams().set('userId', userId) }
+      { params: new HttpParams().set('userId', userId) },
     );
   }
 }

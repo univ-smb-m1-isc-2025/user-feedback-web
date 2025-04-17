@@ -1,6 +1,6 @@
 export class OpenAddUserDialog {
   static readonly type = '[Groups] Open Add User Dialog';
-  
+
   constructor(public readonly groupId: number) {}
 }
 

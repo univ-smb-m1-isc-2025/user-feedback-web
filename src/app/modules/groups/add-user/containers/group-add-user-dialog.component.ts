@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -46,29 +48,30 @@ export class GroupAddUserDialogComponent {
   // Définition correcte des signaux
   loading = signal(false);
   searchResults = signal<User[]>([]);
-  
+
   searchTerm = '';
   private searchTerms = new Subject<string>();
-  
+
   constructor() {
     this.searchTerms
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe(term => {
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((term) => {
         if (term.trim().length >= 2) {
           // Passage du groupId avec le terme de recherche
-          this.#store.dispatch(new groupAddUserActions.SearchUsers(term.trim(), this.data.groupId));
-          
+          this.#store.dispatch(
+            new groupAddUserActions.SearchUsers(term.trim(), this.data.groupId),
+          );
+
           // Souscriptions aux changements d'état...
-          this.#store.select(state => state.groupAddUser?.apiStatus)
-            .subscribe(status => {
+          this.#store
+            .select((state) => state.groupAddUser?.apiStatus)
+            .subscribe((status) => {
               this.loading.set(status === 'loading');
             });
-            
-          this.#store.select(state => state.groupAddUser?.searchResults)
-            .subscribe(results => {
+
+          this.#store
+            .select((state) => state.groupAddUser?.searchResults)
+            .subscribe((results) => {
               if (Array.isArray(results)) {
                 this.searchResults.set(results);
               } else {
@@ -78,14 +81,14 @@ export class GroupAddUserDialogComponent {
         }
       });
   }
-  
+
   onSearchChange(term: string): void {
     this.searchTerms.next(term);
   }
 
   addUserToGroup(userId: number): void {
     this.#store.dispatch(
-      new groupAddUserActions.AddUserToGroup(this.data.groupId, userId)
+      new groupAddUserActions.AddUserToGroup(this.data.groupId, userId),
     );
   }
 

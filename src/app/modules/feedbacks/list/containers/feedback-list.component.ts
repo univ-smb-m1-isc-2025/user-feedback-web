@@ -16,6 +16,7 @@ import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { user } from 'uf/core/services/auth/queries';
+import { groupAddUserUiActions } from 'uf/modules/groups/add-user/data-access/state';
 import { groupCreateUiActions } from 'uf/modules/groups/create/data-access/state';
 import {
   groupDetails,
@@ -34,7 +35,6 @@ import { feedbackUpdateUiActions } from '../../update/data-access/state';
 import { feedbackList, feedbackListLoading } from '../data-access/queries';
 import { Feedback, feedbackListActions } from '../data-access/state';
 import { FeedbackListItemComponent } from '../ui/feedback-list-item';
-import { groupAddUserUiActions } from 'uf/modules/groups/add-user/data-access/state';
 
 @Component({
   selector: 'uf-feedback-list',
@@ -158,6 +158,8 @@ export class FeedbackListComponent implements OnInit {
 
   addMember(): void {
     const groupIdValue = this.#store.selectSnapshot(groupId);
-    this.#store.dispatch(new groupAddUserUiActions.OpenAddUserDialog(groupIdValue));
+    this.#store.dispatch(
+      new groupAddUserUiActions.OpenAddUserDialog(groupIdValue),
+    );
   }
 }

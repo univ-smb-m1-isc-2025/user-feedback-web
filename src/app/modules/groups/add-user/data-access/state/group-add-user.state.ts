@@ -3,7 +3,10 @@ import { inject, Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { catchError, mergeMap, Observable } from 'rxjs';
 
-import { NotifyError, NotifySuccess } from 'uf/core/notification/data-access/notification.actions';
+import {
+  NotifyError,
+  NotifySuccess,
+} from 'uf/core/notification/data-access/notification.actions';
 
 import * as groupAddUserActions from './group-add-user.actions';
 import { GroupAddUserStateModel } from './group-add-user.models';
@@ -27,20 +30,24 @@ export class GroupAddUserState {
   searchUsers(
     ctx: StateContext<GroupAddUserStateModel>,
     action: groupAddUserActions.SearchUsers,
-  ): Observable<any> {
+  ): Observable<void> {
     ctx.patchState({
       apiStatus: 'loading',
     });
 
     // Utiliser également le groupId
-    return this.#groupAddUserService.searchUsers(action.searchTerm, action.groupId).pipe(
-      mergeMap((users) => {
-        return ctx.dispatch(new groupAddUserActions.SearchUsersSuccess(users));
-      }),
-      catchError((error: HttpErrorResponse) => {
-        return ctx.dispatch(new groupAddUserActions.SearchUsersFailed(error));
-      }),
-    );
+    return this.#groupAddUserService
+      .searchUsers(action.searchTerm, action.groupId)
+      .pipe(
+        mergeMap((users) => {
+          return ctx.dispatch(
+            new groupAddUserActions.SearchUsersSuccess(users),
+          );
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return ctx.dispatch(new groupAddUserActions.SearchUsersFailed(error));
+        }),
+      );
   }
 
   @Action(groupAddUserActions.SearchUsersSuccess)
@@ -58,12 +65,15 @@ export class GroupAddUserState {
   searchUsersFailed(
     ctx: StateContext<GroupAddUserStateModel>,
     action: groupAddUserActions.SearchUsersFailed,
-  ): Observable<any> {
+  ): void {
     ctx.patchState({
       apiStatus: 'error',
     });
-    return ctx.dispatch(
-      new NotifyError('Erreur lors de la recherche des utilisateurs', action.error),
+    ctx.dispatch(
+      new NotifyError(
+        'Erreur lors de la recherche des utilisateurs',
+        action.error,
+      ),
     );
   }
 
@@ -71,44 +81,48 @@ export class GroupAddUserState {
   addUserToGroup(
     ctx: StateContext<GroupAddUserStateModel>,
     action: groupAddUserActions.AddUserToGroup,
-  ): Observable<any> {
+  ): Observable<void> {
     ctx.patchState({
       addUserStatus: 'loading',
     });
 
-    return this.#groupAddUserService.addUserToGroup(action.groupId, action.userId).pipe(
-      mergeMap((response) => {
-        return ctx.dispatch(new groupAddUserActions.AddUserToGroupSuccess(response));
-      }),
-      catchError((error: HttpErrorResponse) => {
-        return ctx.dispatch(new groupAddUserActions.AddUserToGroupFailed(error));
-      }),
-    );
+    return this.#groupAddUserService
+      .addUserToGroup(action.groupId, action.userId)
+      .pipe(
+        mergeMap((response) => {
+          return ctx.dispatch(
+            new groupAddUserActions.AddUserToGroupSuccess(response),
+          );
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return ctx.dispatch(
+            new groupAddUserActions.AddUserToGroupFailed(error),
+          );
+        }),
+      );
   }
 
   @Action(groupAddUserActions.AddUserToGroupSuccess)
-  addUserToGroupSuccess(
-    ctx: StateContext<GroupAddUserStateModel>,
-    action: groupAddUserActions.AddUserToGroupSuccess,
-  ): Observable<any> {
+  addUserToGroupSuccess(ctx: StateContext<GroupAddUserStateModel>): void {
     ctx.patchState({
       addUserStatus: 'success',
     });
-    return ctx.dispatch(
-      new NotifySuccess('Utilisateur ajouté au groupe avec succès'),
-    );
+    ctx.dispatch(new NotifySuccess('Utilisateur ajouté au groupe avec succès'));
   }
 
   @Action(groupAddUserActions.AddUserToGroupFailed)
   addUserToGroupFailed(
     ctx: StateContext<GroupAddUserStateModel>,
     action: groupAddUserActions.AddUserToGroupFailed,
-  ): Observable<any> {
+  ): void {
     ctx.patchState({
       addUserStatus: 'error',
     });
-    return ctx.dispatch(
-      new NotifyError('Erreur lors de l\'ajout de l\'utilisateur au groupe', action.error),
+    ctx.dispatch(
+      new NotifyError(
+        "Erreur lors de l'ajout de l'utilisateur au groupe",
+        action.error,
+      ),
     );
   }
 
