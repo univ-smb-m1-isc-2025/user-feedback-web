@@ -5,7 +5,10 @@ import { GroupCreateApiResult, GroupCreateBody } from './group-create.models';
 export class CreateGroup {
   static readonly type = '[Groups] Create Group';
 
-  constructor(public readonly body: GroupCreateBody) {}
+  constructor(
+    public readonly body: GroupCreateBody,
+    public readonly parentGroupId?: number | undefined,
+  ) {}
 }
 
 export class CreateGroupSuccess {

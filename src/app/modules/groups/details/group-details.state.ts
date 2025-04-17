@@ -55,9 +55,17 @@ export class GroupDetailsState {
     context.setState(
       patch({
         apiStatus: 'success',
-        apiResult,
+        apiResult: {
+          ...apiResult,
+          subgroups: [],
+          subgroupsLoading: undefined,
+        },
       }),
     );
+
+    if (apiResult.subGroupCount > 0) {
+      context.dispatch(new groupDetailsActions.GetSubgroups(apiResult.id));
+    }
   }
 
   @Action(groupDetailsActions.GetGroupDetailsFailed)
@@ -65,6 +73,59 @@ export class GroupDetailsState {
     context.setState(
       patch({
         apiStatus: 'failure',
+      }),
+    );
+  }
+
+  @Action(groupDetailsActions.GetSubgroups)
+  getSubgroups(
+    context: StateContext<GroupDetailsStateModel>,
+    { groupId }: groupDetailsActions.GetSubgroups,
+  ): Observable<void> {
+    context.setState(
+      patch({
+        apiResult: patch({
+          subgroupsLoading: 'loading',
+        }),
+      }),
+    );
+
+    return this.#groupDetailsService.getSubgroups(groupId).pipe(
+      switchMap((apiResult: Group[]) => {
+        return context.dispatch(
+          new groupDetailsActions.GetSubgroupsSuccess(apiResult),
+        );
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return context.dispatch(
+          new groupDetailsActions.GetSubgroupsFailed(error),
+        );
+      }),
+    );
+  }
+
+  @Action(groupDetailsActions.GetSubgroupsSuccess)
+  getSubgroupsSuccess(
+    context: StateContext<GroupDetailsStateModel>,
+    { apiResult }: groupDetailsActions.GetSubgroupsSuccess,
+  ): void {
+    context.setState(
+      patch({
+        apiResult: patch({
+          subgroupsLoading: 'success',
+          subgroups: apiResult,
+        }),
+      }),
+    );
+  }
+
+  @Action(groupDetailsActions.GetSubgroupsFailed)
+  getSubgroupsFailed(context: StateContext<GroupDetailsStateModel>): void {
+    context.setState(
+      patch({
+        apiResult: patch({
+          subgroupsLoading: 'failure',
+        }),
       }),
     );
   }

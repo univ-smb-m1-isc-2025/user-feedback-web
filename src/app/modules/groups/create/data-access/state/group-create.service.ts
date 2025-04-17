@@ -10,9 +10,14 @@ export class GroupCreateService {
   readonly #http = inject(HttpClient);
   readonly #apiUrl = inject(API_URL);
 
-  createGroup(body: GroupCreateBody): Observable<GroupCreateApiResult> {
+  createGroup(
+    body: GroupCreateBody,
+    parentGroupId: number | undefined,
+  ): Observable<GroupCreateApiResult> {
     return this.#http.post<GroupCreateApiResult>(
-      `${this.#apiUrl}/groups`,
+      parentGroupId
+        ? `${this.#apiUrl}/groups/${parentGroupId}/subgroups`
+        : `${this.#apiUrl}/groups`,
       body,
     );
   }

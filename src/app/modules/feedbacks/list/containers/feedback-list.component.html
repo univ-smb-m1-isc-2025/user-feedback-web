@@ -11,6 +11,41 @@
   </button>
 </div>
 
+@if (groupDetails()?.subgroupsLoading === 'loading') {
+  <div class="loader-container">
+    <uf-loader [diameter]="50" />
+  </div>
+} @else {
+  <div class="second-section">
+    <div class="second-section-header">
+      <h2 class="section-title">Sous Groupes</h2>
+      <button mat-flat-button (click)="addSubgroup()">
+        <mat-icon>add</mat-icon>
+        Ajouter un sous-groupe
+      </button>
+    </div>
+    <div class="group-list">
+      @for (group of subgroups(); track group.id) {
+        <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
+          <mat-card-header>
+            <mat-card-title>{{ group.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            {{ group.description }}
+          </mat-card-content>
+        </mat-card>
+      } @empty {
+        @if (groupDetails()?.subgroupsLoading) {
+          <div class="empty-state">
+            <mat-icon>comment_bank</mat-icon>
+            <h3>Aucun sous-groupes pour le moment</h3>
+          </div>
+        }
+      }
+    </div>
+  </div>
+}
+
 @if (loading()) {
   <div class="loader-container">
     <uf-loader [diameter]="50" />

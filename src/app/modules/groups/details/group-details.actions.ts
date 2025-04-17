@@ -20,6 +20,24 @@ export class GetGroupDetailsFailed {
   constructor(public readonly error: HttpErrorResponse) {}
 }
 
+export class GetSubgroups {
+  static readonly type = '[Groups] Get Subgroups';
+
+  constructor(public readonly groupId: number) {}
+}
+
+export class GetSubgroupsSuccess {
+  static readonly type = '[Groups] Get Subgroups Success';
+
+  constructor(public readonly apiResult: Group[]) {}
+}
+
+export class GetSubgroupsFailed {
+  static readonly type = '[Groups] Get Subgroups Failed';
+
+  constructor(public readonly error: HttpErrorResponse) {}
+}
+
 export class GroupDetailsResetState {
   static readonly type = '[Groups] Group Details Reset State';
 }

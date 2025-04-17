@@ -14,7 +14,7 @@
 } @else {
   <h2 class="section-title">Mes groupes</h2>
   <div class="group-list">
-    @for (group of groupListSignal(); track group.id) {
+    @for (group of groupList(); track group.id) {
       <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
         <mat-card-header>
           <mat-card-title>{{ group.name }}</mat-card-title>
@@ -51,11 +51,11 @@
     }
   </div>
 
-  @if (groupNotJoinedListSignal().length > 0) {
+  @if (groupNotJoined().length > 0) {
     <div class="second-section">
       <h2 class="section-title">Autres groupes disponibles</h2>
       <div class="group-list">
-        @for (group of groupNotJoinedListSignal(); track group.id) {
+        @for (group of groupNotJoined(); track group.id) {
           <mat-card appearance="outlined" (click)="onClickGroup(group.id)">
             <mat-card-header>
               <mat-card-title>{{ group.name }}</mat-card-title>

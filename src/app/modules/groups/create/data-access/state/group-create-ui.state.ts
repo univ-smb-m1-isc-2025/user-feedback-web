@@ -1,6 +1,6 @@
 import { inject, Injectable, NgZone } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Action, State } from '@ngxs/store';
+import { Action, State, StateContext } from '@ngxs/store';
 
 import * as groupCreateUiActions from './group-create-ui.actions';
 import * as groupCreateActions from './group-create.actions';
@@ -17,9 +17,14 @@ export class GroupCreateUiState {
   #dialogRef!: MatDialogRef<GroupCreateDialogComponent>;
 
   @Action(groupCreateUiActions.OpenCreateGroupDialog)
-  openCreateGroupDialog(): void {
+  openCreateGroupDialog(
+    _context: StateContext<GroupCreateDialogComponent>,
+    { groupId }: groupCreateUiActions.OpenCreateGroupDialog,
+  ): void {
     this.#ngZone.run(() => {
-      this.#dialogRef = this.#dialog.open(GroupCreateDialogComponent);
+      this.#dialogRef = this.#dialog.open(GroupCreateDialogComponent, {
+        data: { groupId },
+      });
     });
   }
 

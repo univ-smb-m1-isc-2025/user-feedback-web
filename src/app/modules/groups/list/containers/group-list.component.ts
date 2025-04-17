@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   OnDestroy,
   OnInit,
@@ -50,10 +51,19 @@ export class GroupListComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   readonly #router = inject(Router);
 
-  readonly groupListSignal = this.#store.selectSignal(groupList);
   readonly groupListLoading = this.#store.selectSignal(groupListLoading);
-
   readonly groupNotJoinedListSignal = this.#store.selectSignal(groupNotJoined);
+  readonly groupListSignal = this.#store.selectSignal(groupList);
+
+  readonly groupNotJoined = computed(() => {
+    return this.groupNotJoinedListSignal().filter(
+      (group) => !group.parentGroupId,
+    );
+  });
+
+  readonly groupList = computed(() => {
+    return this.groupListSignal().filter((group) => !group.parentGroupId);
+  });
 
   ngOnInit(): void {
     this.#store.dispatch([

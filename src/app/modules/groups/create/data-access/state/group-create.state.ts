@@ -1,10 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, State, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { catchError, mergeMap, Observable } from 'rxjs';
 
 import { NotifyError, NotifySuccess } from 'uf/core/notification/data-access';
+
+import { groupDetailsActions } from 'uf/modules/groups/details';
+import { groupId } from 'uf/shared/data-access/router';
 
 import * as groupCreateActions from './group-create.actions';
 import {
@@ -26,11 +29,12 @@ export const initialState: GroupCreateStateModel = {
 @Injectable()
 export class GroupCreateState {
   readonly #groupCreateService = inject(GroupCreateService);
+  readonly #store = inject(Store);
 
   @Action(groupCreateActions.CreateGroup)
   createGroup(
     context: StateContext<GroupCreateStateModel>,
-    { body }: groupCreateActions.CreateGroup,
+    { body, parentGroupId }: groupCreateActions.CreateGroup,
   ): Observable<void> {
     context.setState(
       patch({
@@ -38,7 +42,7 @@ export class GroupCreateState {
       }),
     );
 
-    return this.#groupCreateService.createGroup(body).pipe(
+    return this.#groupCreateService.createGroup(body, parentGroupId).pipe(
       mergeMap((apiResult: GroupCreateApiResult) => {
         return context.dispatch(
           new groupCreateActions.CreateGroupSuccess(apiResult),
@@ -68,6 +72,9 @@ export class GroupCreateState {
       new NotifySuccess('Groupe ajouté avec succès'),
       new groupListActions.GetGroupList(),
     ]);
+
+    const group = this.#store.selectSnapshot(groupId);
+    context.dispatch(new groupDetailsActions.GetGroupDetails(group));
   }
 
   @Action(groupCreateActions.CreateGroupFailed)

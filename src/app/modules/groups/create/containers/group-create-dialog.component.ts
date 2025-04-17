@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import {
+  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogContent,
   MatDialogTitle,
@@ -40,6 +41,8 @@ import { groupCreateActions, groupCreateUiActions } from '../data-access/state';
 export class GroupCreateDialogComponent {
   readonly #store = inject(Store);
 
+  readonly data = inject<{ groupId: number | undefined }>(MAT_DIALOG_DATA);
+
   readonly loading = this.#store.selectSignal(groupCreateLoading);
 
   descriptionControl = new FormControl<string>('', { nonNullable: true });
@@ -59,7 +62,10 @@ export class GroupCreateDialogComponent {
 
   onSubmit(): void {
     this.#store.dispatch(
-      new groupCreateActions.CreateGroup(this.formGroup.getRawValue()),
+      new groupCreateActions.CreateGroup(
+        this.formGroup.getRawValue(),
+        this.data.groupId,
+      ),
     );
   }
 }

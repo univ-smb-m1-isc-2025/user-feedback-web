@@ -13,4 +13,10 @@ export class GroupDetailsService {
   getDetails(groupId: number): Observable<Group> {
     return this.#http.get<Group>(`${this.#apiUrl}/groups/${groupId}`);
   }
+
+  getSubgroups(groupId: number): Observable<Group[]> {
+    return this.#http.get<Group[]>(
+      `${this.#apiUrl}/groups/${groupId}/subgroups`,
+    );
+  }
 }

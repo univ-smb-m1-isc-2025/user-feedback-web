@@ -16,7 +16,12 @@ import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { user } from 'uf/core/services/auth/queries';
-import { groupDetails } from 'uf/modules/groups/details';
+import { groupCreateUiActions } from 'uf/modules/groups/create/data-access/state';
+import {
+  groupDetails,
+  groupDetailsActions,
+  subgroups,
+} from 'uf/modules/groups/details';
 import { LoaderComponent } from 'uf/shared/components/loader';
 import { groupId } from 'uf/shared/data-access/router';
 
@@ -55,12 +60,21 @@ export class FeedbackListComponent implements OnInit {
   readonly feedbackListSignal = this.#store.selectSignal(feedbackList);
   readonly loading = this.#store.selectSignal(feedbackListLoading);
   readonly groupDetails = this.#store.selectSignal(groupDetails);
+  readonly subgroups = this.#store.selectSignal(subgroups);
   readonly userDetails = this.#store.selectSignal(user);
 
   readonly routeGroupList = ['/', 'groups'];
 
   navigateToGroupList(): void {
-    this.#router.navigate(this.routeGroupList);
+    const parentGroupId = this.groupDetails()?.parentGroupId;
+    if (parentGroupId) {
+      this.#store.dispatch(
+        new groupDetailsActions.GetGroupDetails(parentGroupId),
+      );
+      this.#router.navigate([...this.routeGroupList, parentGroupId]);
+    } else {
+      this.#router.navigate(this.routeGroupList);
+    }
   }
 
   ngOnInit(): void {
@@ -114,5 +128,16 @@ export class FeedbackListComponent implements OnInit {
 
   deleteFeedback(feedbackId: number): void {
     this.#store.dispatch(new feedbackDeleteActions.DeleteFeedback(feedbackId));
+  }
+
+  onClickGroup(groupId: number): void {
+    this.#store.dispatch(new groupDetailsActions.GetGroupDetails(groupId));
+    this.#router.navigate(['/', 'groups', groupId]);
+  }
+
+  addSubgroup(): void {
+    this.#store.dispatch(
+      new groupCreateUiActions.OpenCreateGroupDialog(this.groupDetails()?.id),
+    );
   }
 }

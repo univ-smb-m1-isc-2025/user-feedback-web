@@ -15,3 +15,8 @@ export const groupDetails = createSelector(
   [groupDetailsSlice.apiResult],
   (apiResult) => apiResult,
 );
+
+export const subgroups = createSelector(
+  [groupDetails],
+  (groupDetails) => groupDetails?.subgroups ?? [],
+);

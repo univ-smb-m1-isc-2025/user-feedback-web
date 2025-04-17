@@ -13,4 +13,6 @@ export interface Group {
   name: string;
   description: string;
   owner: User;
+  parentGroupId: number | undefined;
+  subGroupCount: number;
 }
