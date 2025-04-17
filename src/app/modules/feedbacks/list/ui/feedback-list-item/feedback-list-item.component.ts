@@ -18,6 +18,8 @@ import {
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { User } from 'uf/core/services/auth/state';
 import { AvatarComponent } from 'uf/shared/components/avatar';
 import { LoaderComponent } from 'uf/shared/components/loader';
 
@@ -46,10 +48,14 @@ import { Feedback } from '../../data-access/state';
     MatInput,
     FormsModule,
     AvatarComponent,
+    MatMenu,
+    MatMenuItem,
+    MatMenuTrigger,
   ],
 })
 export class FeedbackListItemComponent {
   readonly feedback = input.required<Feedback>();
+  readonly user = input.required<User | undefined>();
 
   readonly getComments = output<number>();
   readonly postComment = output<string>();
@@ -57,6 +63,8 @@ export class FeedbackListItemComponent {
   readonly downVoteFeedback = output<number>();
   readonly upVoteComment = output<number>();
   readonly downVoteComment = output<number>();
+  readonly update = output<Feedback>();
+  readonly delete = output<number>();
 
   isCommentAreaOpen = false;
   comment = '';
@@ -88,5 +96,13 @@ export class FeedbackListItemComponent {
 
   dislikeComment(commentId: number): void {
     this.downVoteComment.emit(commentId);
+  }
+
+  updateFeedback(feedback: Feedback): void {
+    this.update.emit(feedback);
+  }
+
+  deleteFeedback(feedbackId: number): void {
+    this.delete.emit(feedbackId);
   }
 }

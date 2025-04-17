@@ -11,6 +11,7 @@ import {
   FeedbackListStateModel,
 } from './feedback-list.models';
 import { FeedbackListService } from './feedback-list.service';
+import { feedbackUpdateActions } from '../../../update/data-access/state';
 
 export const initialState: FeedbackListStateModel = {
   apiStatus: undefined,
@@ -140,6 +141,25 @@ export class FeedbackListState {
           data: updateItem(
             (feedback) => feedback.id === feedbackId,
             patch({ getCommentStatus: 'failure' }),
+          ),
+        }),
+      }),
+    );
+  }
+
+  @Action(feedbackUpdateActions.UpdateFeedbackSuccess)
+  updateFeedbackSuccess(
+    context: StateContext<FeedbackListStateModel>,
+    { feedbackId, apiResult }: feedbackUpdateActions.UpdateFeedbackSuccess,
+  ): void {
+    context.setState(
+      patch({
+        apiResult: patch({
+          data: updateItem(
+            (feedback) => feedback.id === feedbackId,
+            patch({
+              ...apiResult,
+            }),
           ),
         }),
       }),

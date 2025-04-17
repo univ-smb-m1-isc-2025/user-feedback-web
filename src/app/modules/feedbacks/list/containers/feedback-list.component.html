@@ -20,12 +20,15 @@
     @for (feedback of feedbackListSignal(); track feedback.id) {
       <uf-feedback-list-item
         [feedback]="feedback"
+        [user]="userDetails()"
         (getComments)="getComments($event)"
         (postComment)="postComment($event, feedback.id)"
         (upVoteComment)="upVoteComment($event, feedback.id)"
         (downVoteComment)="downVoteComment($event, feedback.id)"
         (upVoteFeedback)="upVoteFeedback($event)"
         (downVoteFeedback)="downVoteFeedback($event)"
+        (update)="updateFeedback($event)"
+        (delete)="deleteFeedback($event)"
       />
     } @empty {
       <div class="empty-state">

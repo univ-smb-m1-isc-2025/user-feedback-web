@@ -5,6 +5,22 @@
       <h3 class="feedback-title">{{ feedback().title }}</h3>
       <div class="feedback-author">{{ feedback().user.username }}</div>
     </div>
+
+    @if (feedback().user.id === user()?.id) {
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="updateFeedback(feedback())">
+          <mat-icon>edit</mat-icon>
+          <span>Modifier</span>
+        </button>
+        <button mat-menu-item (click)="deleteFeedback(feedback().id)">
+          <mat-icon color="warn">delete</mat-icon>
+          <span>Supprimer</span>
+        </button>
+      </mat-menu>
+    }
   </div>
 
   <div class="card-body">

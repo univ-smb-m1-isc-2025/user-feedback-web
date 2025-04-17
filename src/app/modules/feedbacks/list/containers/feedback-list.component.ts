@@ -15,15 +15,18 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { user } from 'uf/core/services/auth/queries';
 import { groupDetails } from 'uf/modules/groups/details';
 import { LoaderComponent } from 'uf/shared/components/loader';
 import { groupId } from 'uf/shared/data-access/router';
 
 import { commentActions } from '../../comment/state';
 import { feedbackCreateUiActions } from '../../create/data-access/state';
+import { feedbackDeleteActions } from '../../delete/data-access/state';
 import { likeActions } from '../../like';
+import { feedbackUpdateUiActions } from '../../update/data-access/state';
 import { feedbackList, feedbackListLoading } from '../data-access/queries';
-import { feedbackListActions } from '../data-access/state';
+import { Feedback, feedbackListActions } from '../data-access/state';
 import { FeedbackListItemComponent } from '../ui/feedback-list-item';
 
 @Component({
@@ -52,6 +55,7 @@ export class FeedbackListComponent implements OnInit {
   readonly feedbackListSignal = this.#store.selectSignal(feedbackList);
   readonly loading = this.#store.selectSignal(feedbackListLoading);
   readonly groupDetails = this.#store.selectSignal(groupDetails);
+  readonly userDetails = this.#store.selectSignal(user);
 
   readonly routeGroupList = ['/', 'groups'];
 
@@ -100,5 +104,15 @@ export class FeedbackListComponent implements OnInit {
     this.#store.dispatch(
       new likeActions.LikeComment(commentId, feedbackId, false),
     );
+  }
+
+  updateFeedback(feedback: Feedback): void {
+    this.#store.dispatch(
+      new feedbackUpdateUiActions.OpenUpdateFeedbackDialog(feedback),
+    );
+  }
+
+  deleteFeedback(feedbackId: number): void {
+    this.#store.dispatch(new feedbackDeleteActions.DeleteFeedback(feedbackId));
   }
 }

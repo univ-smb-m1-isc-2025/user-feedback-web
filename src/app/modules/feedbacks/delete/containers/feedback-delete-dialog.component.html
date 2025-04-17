@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Supprimer le feedback</h2>
+
+<mat-dialog-content>
+  <p>Êtes-vous sûr de vouloir supprimer ce feedback ?</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-button
+    class="cancel-btn"
+    [disabled]="loading()"
+    (click)="onCancel()"
+  >
+    Annuler
+  </button>
+  <button
+    mat-flat-button
+    class="create-btn"
+    [disabled]="loading()"
+    (click)="onSubmit()"
+  >
+    <span>Supprimer</span>
+  </button>
+</mat-dialog-actions>
