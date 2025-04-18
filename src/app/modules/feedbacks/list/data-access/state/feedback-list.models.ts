@@ -17,6 +17,7 @@ export interface Feedback {
   commentCount: number;
   likesCount: number;
   dislikesCount: number;
+  isEdited: boolean;
   comment: Comment[];
   getCommentStatus: ApiStatus | undefined;
   stateLikeUser: LikeState;
@@ -29,6 +30,7 @@ export interface Comment {
   parentFeedbackId: number;
   likesCount: number;
   dislikesCount: number;
+  isEdited: boolean;
   stateLikeUser: LikeState;
 }
 

@@ -6,6 +6,10 @@
       <div class="feedback-author">{{ feedback().user.username }}</div>
     </div>
 
+    @if (feedback().isEdited) {
+      <span class="edited-badge">Edité</span>
+    }
+
     @if (feedback().user.id === user()?.id) {
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
@@ -99,7 +103,12 @@
             <uf-avatar [userId]="comment.user.id" />
             <div class="comment-content">
               <div class="comment-author">{{ comment.user.username }}</div>
-              <p class="comment-text">{{ comment.description }}</p>
+              <p class="comment-text">{{ comment.description }} 
+                @if(comment.isEdited) {
+                  <span class="edited-badge">Edité</span>
+                }
+                
+              }</p>
               <div class="comment-actions">
                 <button
                   mat-button

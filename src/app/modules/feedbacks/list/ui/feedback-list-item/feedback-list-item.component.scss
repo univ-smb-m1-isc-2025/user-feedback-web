@@ -327,3 +327,11 @@
   display: flex;
   justify-content: center;
 }
+
+.edited-badge {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--neutral-500);
+  margin-left: 8px;
+  opacity: 0.8;
+}
