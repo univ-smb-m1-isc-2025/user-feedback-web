@@ -103,12 +103,12 @@
             <uf-avatar [userId]="comment.user.id" />
             <div class="comment-content">
               <div class="comment-author">{{ comment.user.username }}</div>
-              <p class="comment-text">{{ comment.description }} 
-                @if(comment.isEdited) {
+              <p class="comment-text">
+                {{ comment.description }}
+                @if (comment.isEdited) {
                   <span class="edited-badge">Edité</span>
                 }
-                
-              }</p>
+              </p>
               <div class="comment-actions">
                 <button
                   mat-button
